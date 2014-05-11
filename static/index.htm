@@ -1,0 +1,49 @@
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>监控大盘</title>
+    <link href="css/CirLib.css" rel="stylesheet" />
+    <script src="/js/CirLib.js"></script>
+</head>
+
+<body>
+
+</body>
+<script>
+    var  top_1_circle ; //IVR进线
+    var init = function(){
+             top_1_circle  = new $c({
+                        id: "top_left",
+                        x: 300,
+                        y: 30,
+                        radius: 100,
+                        borderColor:"#5A9662",
+                        frontColor:"#5A9662",
+                        transition:"7s",
+                        backColor:"#66AB70",
+                        shadowColor:"#87AB66",
+                        needAnimate : false,
+                        parentEl: document.body
+                });
+        top_2_circle  = new $c({
+                        id: "top1_left",
+                        x: 100,
+                        y: 200,
+                        radius: 100,
+                        borderColor:"#5A9662",
+                        frontColor:"#5A9662",
+                        transition:"7s",
+                        backColor:"#66AB70",
+                        shadowColor:"#87AB66",
+                        needAnimate : false,
+                        parentEl: document.body
+                });
+    }
+     window.onload = function () {
+                 init();
+     }
+</script>
+
+
+</html>
