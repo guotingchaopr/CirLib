@@ -5,47 +5,57 @@
 *****/
 (function () {
     var Cir = function () {
-        var _this = arguments.length ? new Cir.fn.init(arguments[0]) : (function () {
+        var _this = arguments.length ? new Cir.kernel.init(arguments[0]) : (function () {
             console.warn("参数异常 : [arguments] = " + Array.prototype.slice.call(arguments));
             return undefined;
         })()
         return _this;
     };
 
-    Cir.fn = Cir.prototype = {
+    Cir.kernel = Cir.prototype = {
         x: 0,
         y: 0,
-        constructor:Cir,
         _self: undefined,
         id: new Date().getTime(),
         radius: 0,
-        transition: "0.3s",
+        transition: "0.3",
+        height:0,
+        width:0,
         state: "infinite",
         iconFont_1: "&#xe602",
         iconFont_2: "&#xe601",
         iconFont_className: " iconfont",
-        parentEl: document.body,
         animateWay: undefined,
-        parentEl: document.body,
+        parentEl:undefined,
         color: "#5a9662",
         borderColor: "#5A9662",
         frontColor: "#5A9662",
         backColor: "#66AB70",
         shadowColor: "#000",
+        ew_1:60,
+        ew_2:80,
+        ew_normal_fg: "#66AC70",
+        ew_normal_bg: "#5A9662",
+        ew_normal_shadow: "#4D5641",
+        ew_1_fg: "#ECA539",
+        ew_1_bg: "#D09132",
+        ew_1_shadow : "#675235",
+        ew_2_fg: "#D94D4C",
+        ew_2_bg: "#C04444",
+        ew_2_shadow : "#5F3D3C",
         init: function (config) {
             for (var cf in config) {
                 this[cf] = config[cf] || this[cf];
             }
-            this.dia = this.radius * 2;
-            if (this.parentEl) {
-                this.parentEl.appendChild(this.createCir());
+            if(!this.parentEl){
+                    this.parentEl = document.body;
             }
+            this.dia = this.radius * 2;
+            this.parentEl.appendChild(this.createCir());
             return this;
         },
         createCir: function () {
             var circle = this._self = document.createElement("div");
-           // this.__proto__ = circle.__proto__.__proto__;
-           // this.constructor = this;
             circle.id = this.id;
             var cssRule = this.cssRules(this.x, this.y, this.radius);
             for (var style in cssRule) {
@@ -53,7 +63,7 @@
             }
             if (this.animateWay) {
                 this.insertCSSRule(this.animateWay);
-                this._self.style.webkitAnimation = this.id + " " + this.transition + " " + this.state;
+                this._self.style.webkitAnimation = this.id + " " + this.transition + "s " + this.state;
                 this._self.style.webkitAnimationTimingFunction = "linear";
             }
 
@@ -65,8 +75,8 @@
                 "position": "absolute",
                 "left": this.x,
                 "top": this.y,
-                "width": this.dia + "px",
-                "height": this.dia + "px",
+                "width": this.width = this.dia + "px",
+                "height": this.height = this.dia + "px",
                 "webkitBorderRadius": this.dia + "px",
                 "color": this.color,
                 "background": "#3a3b3c",
@@ -74,6 +84,7 @@
                 "borderRadius": this.dia + "px",
                 "boxShadow": "0 0 " + ~~(this.dia / 3) + "px " + this.shadowColor,
                 "overflow": "hidden",
+                "transition":(this.transition/2)+"s",
                 "cursor": "pointer"
             };
             return cssRule;
@@ -118,13 +129,13 @@
             inner_el_1.className += this.iconFont_className;
             inner_el_1.style.color = this.frontColor;
             inner_el_1.innerHTML = this.iconFont_1;
-            inner_el_1.style.fontSize = this.radius * 2 * 2;
+            inner_el_1.style.fontSize = this.dia * 2;
             var inner_el_2 = document.createElement("div");
             inner_el_2.id = this.id + "_child_2";
             inner_el_2.innerHTML = this.iconFont_2;
             inner_el_2.className += this.iconFont_className;
             inner_el_2.style.color = this.backColor;
-            inner_el_2.style.fontSize = this.radius * 2 * 2;
+            inner_el_2.style.fontSize = this.dia * 2;
             this.containWith(this._self, inner_el_1);
             this.containWith(this._self, inner_el_2);
             this.insertCSSRule({
@@ -133,19 +144,43 @@
                 fromValue: -this.dia,
                 toValue: 0
             });
-            var childs = this._self.children;
+            var childs =this.childs =  this._self.children;
             for (var i = 0; i < childs.length; i++) {
                 childs[i].style.left=-this.dia;
-                childs[i].style.webkitAnimation = this.id + "_child " + this.transition + " " + this.state;
+                childs[i].style.webkitAnimation = this.id + "_child " + this.transition + "s " + this.state;
                 childs[i].style.webkitAnimationTimingFunction = "linear";
             }
         },
         containWith: function (fromEl, toEl) {
             return fromEl.appendChild(toEl);
+        },
+        UDAnimate:function(top){ //this up or down
+            var currentDom = this._self;
+            currentDom.style.top = top;
+        },
+        childUDAnimate:function(top){
+            for(var i = 0 ; i < this.childs.length; i++){
+                this.childs[i].style.top = -(top/2);
+            }
+            if((top/2) >= (this.radius * (this.ew_2 / 100))){
+                this._self.style.borderColor = this.ew_2_bg;
+                this._self.style.boxShadow = "0 0 " + ~~(this.dia / 3) + "px " + this.ew_2_shadow;
+                this.childs[0].style.color = this.ew_2_bg;
+                this.childs[1].style.color = this.ew_2_fg;
+            }else if((top/2) >= (this.radius * (this.ew_1 / 100))){
+                this._self.style.borderColor = this.ew_1_bg;
+                this._self.style.boxShadow = "0 0 " + ~~(this.dia / 3) + "px " + this.ew_1_shadow;
+                this.childs[0].style.color = this.ew_1_bg;
+                this.childs[1].style.color = this.ew_1_fg;
+            }else{
+                this._self.style.borderColor = this.ew_normal_bg;
+                this._self.style.boxShadow = "0 0 " + ~~(this.dia / 3) + "px " + this.ew_normal_shadow;
+                this.childs[0].style.color = this.ew_normal_bg;
+                this.childs[1].style.color = this.ew_normal_fg;
+            }
         }
-
     };
-    Cir.fn.extend =
+    Cir.kernel.extend =
         function () {
             var src, copy, name, options,
                 target = arguments[0] || {};
@@ -172,7 +207,7 @@
             }
             return target;
     };
-    Cir.fn.init.prototype = Cir.fn;
+    Cir.kernel.init.prototype = Cir.kernel;
     window.Cir = window.$c = Cir;
     return Cir;
 })();
