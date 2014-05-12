@@ -15,6 +15,7 @@
 	Cir.kernel = Cir.prototype = {
 		x: 0,
 		y: 0,
+		_callback:undefined,
 		_self: undefined,
 		id: new Date().getTime(),
 		radius: 0,
@@ -29,21 +30,18 @@
 		parentEl: undefined,
 		color: "#5a9662",
 		borderColor: "#5A9662",
-		frontColor: "#5A9662",
-		backColor: "#66AB70",
-		shadowColor: "#000",
 		ew_1: 60,
 		ew_2: 80,
-		ew_normal_fg: "#66AC70",
-		ew_normal_bg: "#5A9662",
-		ew_normal_shadow: "#4D5641",
+		ew_normal_fg: "#5A9662",
+		ew_normal_bg: "#66AB70",
+		ew_normal_shadow: "#5A9662",
 		ew_1_fg: "#ECA539",
 		ew_1_bg: "#D09132",
 		ew_1_shadow: "#675235",
 		ew_2_fg: "#D94D4C",
 		ew_2_bg: "#C04444",
 		ew_2_shadow: "#5F3D3C",
-		ew_2_limit: 0,
+		ew_1_limit: 0,
 		ew_2_limit: 0,
 		ew_rate: 0,
 		init: function (config) {
@@ -55,6 +53,7 @@
 			}
 			this.dia = this.radius * 2;
 			this.parentEl.appendChild(this.createCir());
+			if(this._callback)this._callback.apply(this);
 			return this;
 		},
 		createCir: function () {
@@ -85,7 +84,7 @@
 				"background": "#3a3b3c",
 				"border": (~~(this.dia / 38)) + "px solid " + this.borderColor,
 				"borderRadius": this.dia + "px",
-				"boxShadow": "0 0 " + ~~(this.dia / 3) + "px " + this.shadowColor,
+				"boxShadow": "0 0 " + ~~(this.dia / 3) + "px " + this.ew_normal_shadow,
 				"overflow": "hidden",
 				"transition": ~~(this.transition / 2) + "s",
 				"cursor": "pointer"
@@ -130,14 +129,14 @@
 			var inner_el_1 = document.createElement("div");
 			inner_el_1.id = this.id + "_child_1";
 			inner_el_1.className += this.iconFont_className;
-			inner_el_1.style.color = this.frontColor;
+			inner_el_1.style.color = this.ew_normal_fg;
 			inner_el_1.innerHTML = this.iconFont_1;
 			inner_el_1.style.fontSize = this.dia * 2;
 			var inner_el_2 = document.createElement("div");
 			inner_el_2.id = this.id + "_child_2";
 			inner_el_2.innerHTML = this.iconFont_2;
 			inner_el_2.className += this.iconFont_className;
-			inner_el_2.style.color = this.backColor;
+			inner_el_2.style.color = this.ew_normal_bg;
 			inner_el_2.style.fontSize = this.dia * 2;
 			this.containWith(this._self, inner_el_1);
 			this.containWith(this._self, inner_el_2);

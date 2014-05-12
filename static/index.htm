@@ -8,13 +8,13 @@
     <script src="/js/CirLib.js"></script>
     <script type="text/javascript" src="js/jscolor.js"></script>
     <style>
-        *,
-        html {
+        *,html,body {
             font-size: 12px;
             font-family: sans-serif;
             padding: 0;
             margin: 0;
         }
+
         .config {
             position: fixed;
             bottom: 2%;
@@ -43,7 +43,7 @@
             width: 60px;
         }
         #id{
-            height: 20px;width: 180px;
+            width: 10%; margin: 10px 0 10px 0;
         }
     </style>
 </head>
@@ -53,12 +53,13 @@
     <div class="config">
         改变实时预警值<select id="cache_name" name="cache_name" /> <input value="10" type="text" id="realTime" />
         <input type="button" value="变更预警值" id="realBtn" />
+		 <input type="button" value="随机运动" id="movementBtn" />
         <h3>生成流量瓶</h3>
         名称:<input value="" type="text" id="id" placeholder="用做元素ID必须以字母开头" /><br/>
         X坐标
         <input value="50" type="text" id="x" />Y坐标
         <input value="50" type="text" id="y" />半径
-        <input value="50" id="radius" type="text" disabled="disabled"  />动画时间
+        <input value="50" id="radius" type="text"  />动画时间
         <input value="3" id="transition" type="text" />s/秒
         <br/>边框颜色
         <input value="5A9662" id="borderColor" type="text" class="color" />阴影色
@@ -103,19 +104,32 @@
                 var fromId = document.getElementById("cache_name").value;
                 eval(fromId+".childUDAnimate("+ (real_value<=100?real_value:100) + ")");
         });
+		  document.getElementById("movementBtn").addEventListener("click", function () { //随机运动按钮
+                var fromId  = document.getElementById("cache_name").value;
+                var elem = eval(fromId);
+			  		 high(elem);
+        });
     }
     var cache_name4_select = function(cn){ //监听元素添加到select
         document.getElementById('cache_name').options.add(new Option(cn,cn));
     }
+
     var high =function(elem){
-        var _top = 0;
+        var _top = elem.y,
+				_left = elem.x;
         setInterval(function(){
-            if(_top >= document.body.offsetWidth){
-                _top = 0;
+            if(_top >= document.body.offsetHeight){
+                _top = elem.y;
+					console.log(this.id  + "返航");
             }
-            elem.UDAnimate(_top);
-            _top+=30;
-        },elem.transition * 1000);
+			   if(_left >= document.body.offsetWidth){
+                _left = elem.x;
+					console.log(this.id  + "返航");
+            }
+            elem.UDAnimate({left:_left,top:_top});
+            _top=Math.ceil( Math.random()*document.body.offsetHeight);
+			   _left=Math.ceil( Math.random()*document.body.offsetHeight);
+        },elem.transition * 500);
     }
     window.onload = function () {
         init();
