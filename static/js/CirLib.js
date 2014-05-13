@@ -169,7 +169,7 @@
 			var covered_top = top * this.ew_rate;
 
 			for (var i = 0; i < this.childs.length; i++) {
-				this.childs[i].style.top = - (covered_top / 2);
+				this.childs[i].style.top = -(~~(covered_top / 2));
 			}
 
 			if (covered_top >= this.ew_2_limit) {
@@ -191,7 +191,7 @@
 		}
 	};
 	Cir.kernel.extend =
-		function () {
+		function() {
 			var src, copy, name, options,
 				target = arguments[0] || {};
 			i = 1,

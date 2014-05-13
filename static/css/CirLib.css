@@ -29,10 +29,8 @@ body {
 	-webkit-animation-timing-function: linear;
 }
 .front {
-	color: #66ab70;
 	transition: color 0.3s ease;
 }
 .back {
-	color: #5a9662;
 	transition: 0.3s;
 }
