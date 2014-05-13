@@ -159,6 +159,81 @@
 		}
 	});
 
+    var pc = new $c({
+		id: "pc",
+		x: 2655,
+		title:["PC"],
+		y:767,
+		radius: 100,
+		transition: 5,
+        borderColor: "#429cb7",
+		ew_normal_fg: "#429cb7",
+		ew_normal_bg: "#3a889f",
+		ew_normal_shadow: "#3a889f",
+		ew_2_fg: "#429cb7",
+		ew_2_bg: "#3a889f",
+		ew_2_shadow: "#429cb7",
+		_callback: function () {
+			this.childUDAnimate(100);
+		}
+	});
+
+    var wireless = new $c({
+		id: "wireless",
+		x: 3045,
+		title:["无线"],
+		y:767,
+		radius: 100,
+		transition: 5,
+        borderColor: "#429cb7",
+		ew_normal_fg: "#429cb7",
+		ew_normal_bg: "#3a889f",
+		ew_normal_shadow: "#3a889f",
+		ew_2_fg: "#429cb7",
+		ew_2_bg: "#3a889f",
+		ew_2_shadow: "#429cb7",
+		_callback: function () {
+			this.childUDAnimate(100);
+		}
+	});
+    var pc_selfHelp = new $c({
+		id: "pc_selfHelp",
+		title:["PC","自助"],
+		x: 2335,
+		y: 1246,
+		radius: 100,
+		transition: 2,
+        _callback: function () {
+			this.childUDAnimate(50);
+		}
+
+	});
+    var wireless_selfHelp = new $c({
+		id: "wireless_selfHelp",
+		title:["无线","自助"],
+		x: 3371,
+		y: 1246,
+		radius: 100,
+		transition: 2,
+        _callback: function () {
+			this.childUDAnimate(50);
+		}
+
+	});
+
+    var artificial_selfHelp = new $c({
+		id: "pc_slefHelp",
+		title:["人工","在线服务"],
+		x: 2809,
+		y: 1223,
+		radius: 150,
+		transition: 2,
+        _callback: function () {
+			this.childUDAnimate(50);
+		}
+
+	});
+
 
 	setTimeout(function () {
 		document.body.style.background = "url(../img/background-img.jpg) 100% 100% no-repeat";
