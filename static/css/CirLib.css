@@ -1,9 +1,18 @@
 body {
 	background-color: #111;
-	transition: 0.5s;
-	background: url(../img/background-img.jpg) center center no-repeat;
+	transition: 1.5s;
+	/*background: url(../img/background-img.jpg) 100% 100% no-repeat;*/
 	background-size: cover;
+	zoom: 35%;
 }
+.cir_title{
+	color:white;
+	position: relative;
+	text-align: center;
+	vertical-align: middle;
+	font-weight: bold;
+}
+
 @font-face {
 	font-family: 'iconfont';
 	src: url('yfonts/iconfont.eot');

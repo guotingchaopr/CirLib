@@ -20,6 +20,7 @@
 		id: new Date().getTime(),
 		radius: 0,
 		transition: "0.3",
+		title : [],
 		height: 0,
 		width: 0,
 		state: "infinite",
@@ -28,7 +29,6 @@
 		iconFont_className: " iconfont",
 		animateWay: undefined,
 		parentEl: undefined,
-		color: "#5a9662",
 		borderColor: "#5A9662",
 		ew_1: 60,
 		ew_2: 80,
@@ -80,7 +80,6 @@
 				"width": this.width = this.dia + "px",
 				"height": this.height = this.dia + "px",
 				"webkitBorderRadius": this.dia + "px",
-				"color": this.color,
 				"background": "#3a3b3c",
 				"border": (~~(this.dia / 38)) + "px solid " + this.borderColor,
 				"borderRadius": this.dia + "px",
@@ -155,6 +154,14 @@
 				childs[i].style.webkitAnimation = this.id + "_child " + this.transition + "s " + this.state;
 				childs[i].style.webkitAnimationTimingFunction = "linear";
 			}
+			for(var i = 0; i< this.title.length; i++ ){
+				var textWidget = document.createElement("p");
+				textWidget.style.fontSize = (this.radius / (i+1) * 0.45 )+ "px" ;
+				textWidget.innerHTML= this.title[i];
+				textWidget.style.top = (this.radius * 0.7) + "px" ;
+				textWidget.className +="cir_title";
+				this.containWith(this._self,textWidget);
+			}
 
 		},
 		containWith: function (fromEl, toEl) {
@@ -168,7 +175,7 @@
 		childUDAnimate: function (top) {
 			var covered_top = top * this.ew_rate;
 
-			for (var i = 0; i < this.childs.length; i++) {
+			for (var i = 0; i < 2 ; i++) {
 				this.childs[i].style.top = -(~~(covered_top / 2));
 			}
 
