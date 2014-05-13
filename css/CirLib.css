@@ -1,9 +1,10 @@
 body {
 	background-color: #111;
-	transition: 1.5s;
-	/*background: url(../img/background-img.jpg) 100% 100% no-repeat;*/
-	background-size: cover;
-	zoom: 35%;
+	transition: 1s;
+    background: url(../img/bg.jpg) no-repeat;
+/*	background: url(../img/bg.jpg) 100% 100% no-repeat;*/
+/*	background-size: cover;*/
+
 }
 .cir_title{
 	color:white;
