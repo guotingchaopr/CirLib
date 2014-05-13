@@ -1,10 +1,12 @@
 <html>
+
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<meta name="author" content="demo 0.5 gzc">
 	<title>监控大盘-demo</title>
 	<link href="css/CirLib.css" rel="stylesheet" />
-	<script type="text/javascript" src="js/CirLib.js"></script>
+	<script src="/js/CirLib.js"></script>
+	<script type="text/javascript" src="js/jscolor.js"></script>
 	<style>
 		*,
 		html,
@@ -47,47 +49,100 @@
 		}
 	</style>
 </head>
+
 <body>
-<script>
-		var init = function () {
-			var top_1_circle = new $c({
-				id: "top_left",
-				x: 632,
-				y: 121,
-				radius: 170,
-				transition: 3,
-				borderColor: "#339588",
-				ew_normal_fg: "#3AAA99",
-				ew_normal_bg: "#339588",
-				ew_normal_shadow: "#1B423C",
-				ew_2_fg: "#3AAA99",
-				ew_2_bg: "#339588",
-				ew_2_shadow: "#1B423C",
-				_callback: function () {
-					this.childUDAnimate(80);
-				}
-			});
-			var top_1_circle = new $c({
-				id: "top_left",
-				x: 139,
-				y: 626,
-				radius: 113,
-				transition: 3,
-				borderColor: "#339588",
-				ew_normal_fg: "#3AAA99",
-				ew_normal_bg: "#339588",
-				ew_normal_shadow: "#1B423C",
-				ew_2_fg: "#3AAA99",
-				ew_2_bg: "#339588",
-				ew_2_shadow: "#1B423C",
-				_callback: function () {
-					this.childUDAnimate(80);
-				}
-			});
-		}
-		window.onload = function () {
-			init();
-		}
-	</script>
 </body>
+<script>
+	var ivr = new $c({
+		id: "ivr",
+		x: 632,
+		title:["IVR","进线"],
+		y: 121,
+		radius: 170,
+		transition: 8,
+		borderColor: "#339588",
+		ew_normal_fg: "#3AAA99",
+		ew_normal_bg: "#339588",
+		ew_normal_shadow: "#1B423C",
+		ew_2_fg: "#3AAA99",
+		ew_2_bg: "#339588",
+		ew_2_shadow: "#1B423C",
+		_callback: function () {
+			this.childUDAnimate(80);
+		}
+	});
+	var hand_up = new $c({
+		id: "hand_up",
+		title:["按键挂断"],
+		x: 139,
+		y: 626,
+		radius: 100,
+		transition: 6,
+		borderColor: "#747E80",
+		ew_normal_fg: "#747E80",
+		ew_normal_bg: "#3E5158",
+		ew_normal_shadow: "#3E5158",
+		ew_2_fg: "#747E80",
+		ew_2_bg: "#3E5158",
+		ew_2_shadow: "#3E5158",
+		ew_1_fg: "#747E80",
+		ew_1_bg: "#3E5158",
+		ew_1_shadow: "#3E5158",
+		_callback: function () {
+			this.childUDAnimate(50);
+		}
+	});
+	var ai_output = new $c({
+		id: "ai_output",
+		title:["智能","输出"],
+		x: 599,
+		y: 626,
+		radius: 100,
+		transition: 4
+	});
+	var a_quene = new $c({
+		id: "a_quene",
+		title:["人工","队列"],
+		x: 1280,
+		y: 626,
+		radius: 100,
+		transition: 2
+	});
+	var vdn = new $c({
+		id: "vdn",
+		title:["vdn"],
+		x: 1311,
+		y: 1029,
+		radius: 80,
+		transition: 2,
+		borderColor: "#339588",
+		ew_normal_fg: "#3AAA99",
+		ew_normal_bg: "#339588",
+		ew_normal_shadow: "#1B423C",
+		ew_2_fg: "#3AAA99",
+		ew_2_bg: "#339588",
+		ew_2_shadow: "#1B423C"
+	});
+	var hotline_selfsupport = new $c({
+		id: "hotline_selfsupport",
+		title:["热线","自营"],
+		x: 762,
+		y: 1237,
+		radius: 150,
+		transition: 2
+	});
+	var hotline_wb = new $c({
+		id: "hotline_wb",
+		title:["热线","外包"],
+		x: 1655,
+		y: 1237,
+		radius: 150,
+		transition: 2
+	});
+
+	setTimeout(function () {
+		document.body.style.background = "url(../img/background-img.jpg) 100% 100% no-repeat";
+	}, 3000);
+</script>
+
 </html>
