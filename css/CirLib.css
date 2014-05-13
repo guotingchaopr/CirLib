@@ -1,7 +1,7 @@
 body {
 	background-color: #111;
 	transition: 0.5s;
-	background: url(../img/background-img.jpg) center center no-repeat;
+	background: url(https://raw.githubusercontent.com/guotingchaopr/CirLib/master/static/img/background-img.jpg) center center no-repeat;
 	background-size: cover;
 }
 @font-face {
@@ -10,11 +10,11 @@ body {
 	/* IE9*/
 	src: url('fonts/iconfont.eot?#iefix') format('embedded-opentype'),
 	/* IE6-IE8 */
-	url('fonts/iconfont.woff') format('woff'),
+	url('https://raw.githubusercontent.com/guotingchaopr/CirLib/master/static/css/fonts/iconfont.woff') format('woff'),
 	/* chrome、firefox */
-	url('fonts/iconfont.ttf') format('truetype'),
+	url('https://raw.githubusercontent.com/guotingchaopr/CirLib/master/static/css/fonts/iconfont.ttf') format('truetype'),
 	/* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
-	url('iconfont.svg#uxiconfont') format('svg');
+	url('https://raw.githubusercontent.com/guotingchaopr/CirLib/master/static/css/fonts/iconfont.svg#uxiconfont') format('svg');
 	/* iOS 4.1- */
 }
 .iconfont {
