@@ -140,6 +140,26 @@
 		transition: 2
 	});
 
+	var online = new $c({
+		id: "online",
+		x: 2811,
+		title:["在线","online"],
+		y:133,
+		radius: 170,
+		transition: 10,
+		borderColor: "#879FCB",
+		ew_normal_fg: "#879FCB",
+		ew_normal_bg: "#7486A7",
+		ew_normal_shadow: "#1B423C",
+		ew_2_fg: "#879FCB",
+		ew_2_bg: "#7486A7",
+		ew_2_shadow: "#1B423C",
+		_callback: function () {
+			this.childUDAnimate(100);
+		}
+	});
+
+
 	setTimeout(function () {
 		document.body.style.background = "url(../img/background-img.jpg) 100% 100% no-repeat";
 	}, 3000);
