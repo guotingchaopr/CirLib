@@ -48,10 +48,19 @@
 			height: 20px;
 			width: 180px;
 		}
+		@-webkit-keyframes  halo{
+			from{-webkit-transform:rotate(0deg);}
+			to{-webkit-transform:rotate(360deg);}
+		}
+
+		#halo{
+			-webkit-animation: halo 10s linear;
+		}
 	</style>
 </head>
 
 <body>
+	<img src="img/halo.png"  id="halo" style="position:absolute;left:726px;top:565px;" />
 </body>
 <script>
 	var applyStyle = function(elem,left,top,hasShadow){
@@ -66,6 +75,7 @@
 		document.body.appendChild(elem);
 		return elem;
 	}
+
 	var blackWall_1 =applyStyle(document.createElement("div"),314,1296,true);
 	var blackWall_2 =applyStyle(document.createElement("div"),1254,1296,true);
 	var blackWall_2 =applyStyle(document.createElement("div"),2248,1374);
@@ -213,5 +223,4 @@
 		document.body.style.background = "url(../img/bg.jpg) 100% 100% no-repeat";
 	}, 3000);*/
 </script>
-
 </html>
