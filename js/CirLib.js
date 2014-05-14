@@ -35,11 +35,11 @@
 		ew_normal_fg: "#5A9662",
 		ew_normal_bg: "#66AB70",
 		ew_normal_shadow: "#5A9662",
-		ew_1_fg: "#ECA539",
-		ew_1_bg: "#D09132",
+		ew_1_fg: "#D09132",
+		ew_1_bg: "#ECA539",
 		ew_1_shadow: "#675235",
-		ew_2_fg: "#D94D4C",
-		ew_2_bg: "#C04444",
+		ew_2_fg: "#C04444",
+		ew_2_bg: "#D94D4C",
 		ew_2_shadow: "#5F3D3C",
 		ew_1_limit: 0,
 		ew_2_limit: 0,
@@ -180,20 +180,20 @@
 			}
 
 			if (covered_top >= this.ew_2_limit) {
-				this._self.style.borderColor = this.ew_2_bg;
+				this._self.style.borderColor = this.ew_2_fg;
 				this._self.style.boxShadow = "0 0 " + ~~(this.dia / 3) + "px " + this.ew_2_shadow;
-				this.childs[0].style.color = this.ew_2_bg;
-				this.childs[1].style.color = this.ew_2_fg;
+				this.childs[0].style.color = this.ew_2_fg;
+				this.childs[1].style.color = this.ew_2_bg;
 			} else if (covered_top >= this.ew_1_limit) {
-				this._self.style.borderColor = this.ew_1_bg;
+				this._self.style.borderColor = this.ew_1_fg;
 				this._self.style.boxShadow = "0 0 " + ~~(this.dia / 3) + "px " + this.ew_1_shadow;
-				this.childs[0].style.color = this.ew_1_bg;
-				this.childs[1].style.color = this.ew_1_fg;
+				this.childs[0].style.color = this.ew_1_fg;
+				this.childs[1].style.color = this.ew_1_bg;
 			} else {
-				this._self.style.borderColor = this.ew_normal_bg;
+				this._self.style.borderColor = this.ew_normal_fg;
 				this._self.style.boxShadow = "0 0 " + ~~(this.dia / 3) + "px " + this.ew_normal_shadow;
-				this.childs[0].style.color = this.ew_normal_bg;
-				this.childs[1].style.color = this.ew_normal_fg;
+				this.childs[0].style.color = this.ew_normal_fg;
+				this.childs[1].style.color = this.ew_normal_bg;
 			}
 		}
 	};
