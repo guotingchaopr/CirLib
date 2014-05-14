@@ -41,27 +41,55 @@
 			cursor: pointer;
 			box-shadow: -2px 2px 0px 2px #979FCA;
 		}
-		#transition {
-			width: 60px;
-		}
-		#id {
-			height: 20px;
-			width: 180px;
-		}
-		@-webkit-keyframes  halo{
+
+
+		.halo{
+			-webkit-animation:halos 3s linear infinite;
+        }
+
+        .plane{
+             -webkit-transform:rotate(90deg);
+             -webkit-animation:plane 10s linear infinite;
+        }
+        @-webkit-keyframes halos{
 			from{-webkit-transform:rotate(0deg);}
 			to{-webkit-transform:rotate(360deg);}
 		}
 
-		#halo{
-			-webkit-animation: halo 10s linear;
+
+        @-webkit-keyframes plane{
+            0%{
+                 -webkit-transform:rotate(90deg);
+                left:949;
+                top:1043;
+            }
+            25%{
+                -webkit-transform:rotate(110deg);
+                left:2000;
+                top:1060;
+            }
+            50%{
+                -webkit-transform:rotate(270deg);
+                left:2650px;
+                top:1265px;
+            }
+
+            75%{
+                -webkit-transform:rotate(270deg);
+                left:2000x;
+                top:1060px;
+            }
+            100%{
+                -webkit-transform:rotate(450deg);
+                left:949;
+                top:1043;
+            }
+
 		}
 	</style>
 </head>
 
 <body>
-	<img src="img/halo.png"  id="halo" style="position:absolute;left:726px;top:565px;" />
-</body>
 <script>
 	var applyStyle = function(elem,left,top,hasShadow){
 		elem.style.backgroundColor = "#000";
@@ -218,9 +246,25 @@
 
 	});
 
+    var halo_img = function(left,top,name){
+        var halo = new Image();
+        halo.className=name;
+        halo.src="img/"+name+".png";
+        halo.style.position = "absolute";
+        halo.style.left=left+"px";
+        halo.style.top=top+"px";
+        halo.style.zIndex="-9999";
+        halo.onload = function(){
+            document.body.appendChild(halo);
+        }
 
+    }
+    halo_img(726,565,"halo");halo_img(1287,565,"halo");
+    halo_img(949,1043,"plane");
 	/*setTimeout(function () {
 		document.body.style.background = "url(../img/bg.jpg) 100% 100% no-repeat";
 	}, 3000);*/
 </script>
+
+</body>
 </html>
