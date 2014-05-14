@@ -23,6 +23,7 @@
 		title : [],
 		height: 0,
 		width: 0,
+		bgColor:"#3a3b3c",
 		state: "infinite",
 		iconFont_1: "&#xe602",
 		iconFont_2: "&#xe601",
@@ -32,9 +33,9 @@
 		borderColor: "#5A9662",
 		ew_1: 60,
 		ew_2: 80,
-		ew_normal_fg: "#5A9662",
-		ew_normal_bg: "#66AB70",
-		ew_normal_shadow: "#5A9662",
+		ew_normal_fg: "#30763A",
+		ew_normal_bg: "#3CA44F",
+		ew_normal_shadow: "#30763A",
 		ew_1_fg: "#D09132",
 		ew_1_bg: "#ECA539",
 		ew_1_shadow: "#675235",
@@ -44,6 +45,7 @@
 		ew_1_limit: 0,
 		ew_2_limit: 0,
 		ew_rate: 0,
+		isAnimate : "true",
 		init: function (config) {
 			for (var cf in config) {
 				this[cf] = config[cf] || this[cf];
@@ -59,17 +61,22 @@
 		createCir: function () {
 			var circle = this._self = document.createElement("div");
 			circle.id = this.id;
-			var cssRule = this.cssRules(this.x, this.y, this.radius);
+			var cssRule = this.cssRules();
 			for (var style in cssRule) {
 				circle.style[style] = cssRule[style];
 			}
-			if (this.animateWay) {
-				this.insertCSSRule(this.animateWay);
-				this._self.style.webkitAnimation = this.id + " " + this.transition + "s " + this.state;
-				this._self.style.webkitAnimationTimingFunction = "linear";
+			//this._self.style.webkitAnimationDirection = "alternate";
+			if(this.isAnimate == "true"){
+				this.createAnimateWidget(); //组装内部模块
 			}
-
-			this.createAnimateWidget(); //组装内部模块
+			for(var i = 0; i< this.title.length; i++ ){ //文字or图片拼装
+				var widget =document.createElement("p");
+				widget.style.fontSize = ~~(this.radius / (i+1) * 0.5 )+ "px" ;
+				widget.innerHTML += this.title[i];
+				widget.style.top = ~~(this.radius * 0.6) + "px" ;
+				widget.className +="cir_title";
+				this.containWith(this._self,widget);
+			}
 			return circle;
 		},
 		cssRules: function () {
@@ -80,10 +87,10 @@
 				"width": this.width = this.dia + "px",
 				"height": this.height = this.dia + "px",
 				"webkitBorderRadius": this.dia + "px",
-				"background": "#3a3b3c",
-				"border": (~~(this.dia / 38)) + "px solid " + this.borderColor,
+				"background": this.bgColor,
+				"border": "6px solid " + this.borderColor,
 				"borderRadius": this.dia + "px",
-				"boxShadow": "0 0 " + ~~(this.dia / 3) + "px " + this.ew_normal_shadow,
+				"boxShadow": "0 " +(~~(this.radius * 0.1)) + "px 0 " + this.ew_normal_shadow,
 				"overflow": "hidden",
 				"transition": ~~(this.transition / 2) + "s",
 				"cursor": "pointer"
@@ -154,15 +161,6 @@
 				childs[i].style.webkitAnimation = this.id + "_child " + this.transition + "s " + this.state;
 				childs[i].style.webkitAnimationTimingFunction = "linear";
 			}
-			for(var i = 0; i< this.title.length; i++ ){
-				var textWidget = document.createElement("p");
-				textWidget.style.fontSize = (this.radius / (i+1) * 0.45 )+ "px" ;
-				textWidget.innerHTML= this.title[i];
-				textWidget.style.top = (this.radius * 0.7) + "px" ;
-				textWidget.className +="cir_title";
-				this.containWith(this._self,textWidget);
-			}
-
 		},
 		containWith: function (fromEl, toEl) {
 			return fromEl.appendChild(toEl);
@@ -181,17 +179,17 @@
 
 			if (covered_top >= this.ew_2_limit) {
 				this._self.style.borderColor = this.ew_2_fg;
-				this._self.style.boxShadow = "0 0 " + ~~(this.dia / 3) + "px " + this.ew_2_shadow;
+				this._self.style.boxShadow = "0 " +(~~(this.radius * 0.1)) + "px 0 "+ this.ew_2_shadow;
 				this.childs[0].style.color = this.ew_2_fg;
 				this.childs[1].style.color = this.ew_2_bg;
 			} else if (covered_top >= this.ew_1_limit) {
 				this._self.style.borderColor = this.ew_1_fg;
-				this._self.style.boxShadow = "0 0 " + ~~(this.dia / 3) + "px " + this.ew_1_shadow;
+				this._self.style.boxShadow = "0 " +(~~(this.radius * 0.1)) + "px 0 "+ this.ew_1_shadow;
 				this.childs[0].style.color = this.ew_1_fg;
 				this.childs[1].style.color = this.ew_1_bg;
 			} else {
 				this._self.style.borderColor = this.ew_normal_fg;
-				this._self.style.boxShadow = "0 0 " + ~~(this.dia / 3) + "px " + this.ew_normal_shadow;
+				this._self.style.boxShadow = "0 " +(~~(this.radius * 0.1)) + "px 0 "+ this.ew_normal_shadow;
 				this.childs[0].style.color = this.ew_normal_fg;
 				this.childs[1].style.color = this.ew_normal_bg;
 			}

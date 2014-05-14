@@ -11,7 +11,8 @@
 		html,
 		body {
 			font-size: 12px;
-			font-family: sans-serif;
+			font-family: 'Microsoft Yahei','微软雅黑';
+			text-shadow: 0 5px 5px #000;
 			padding: 0;
 			margin: 0;
         }
@@ -53,11 +54,28 @@
 <body>
 </body>
 <script>
+	var applyStyle = function(elem,left,top,hasShadow){
+		elem.style.backgroundColor = "#000";
+		elem.style.position= "absolute";
+		elem.style.width="433px";
+		elem.style.height="588px";
+		elem.style.borderRadius="15px";
+		elem.style.boxShadow= hasShadow?"0 0 120px #69CAFF":"none";
+		elem.style.top = top;
+		elem.style.left = left;
+		document.body.appendChild(elem);
+		return elem;
+	}
+	var blackWall_1 =applyStyle(document.createElement("div"),314,1296,true);
+	var blackWall_2 =applyStyle(document.createElement("div"),1254,1296,true);
+	var blackWall_2 =applyStyle(document.createElement("div"),2248,1374);
+	var blackWall_2 =applyStyle(document.createElement("div"),2727,1377,true);
+	var blackWall_2 =applyStyle(document.createElement("div"),3208,1370);
 	var ivr = new $c({
 		id: "ivr",
-		x: 632,
+		x: 779,
 		title:["IVR","进线"],
-		y: 121,
+		y: 141,
 		radius: 170,
 		transition: 8,
 		borderColor: "#339588",
@@ -74,9 +92,9 @@
 	var hand_up = new $c({
 		id: "hand_up",
 		title:["按键挂断"],
-		x: 139,
-		y: 626,
-		radius: 110,
+		x: 225,
+		y: 666,
+		radius: 102,
 		transition: 8,
 		borderColor: "#747E80",
 		ew_normal_fg: "#3E5158",
@@ -87,95 +105,65 @@
 		ew_2_shadow: "#3E5158",
 		ew_1_fg: "#3E5158",
 		ew_1_bg: "#747E80",
-		ew_1_shadow: "#3E5158",
-		_callback: function () {
-			this.childUDAnimate(50);
-		}
-	});
-	var ai_output = new $c({
-		id: "ai_output",
-		title:["智能","输出"],
-		x: 610,
-		y: 626,
+		ew_1_shadow: "#3E5158"});
+	var self_service = new $c({
+		id: "self_service",
+		title:["自助","服务"],
+		x: 1399,
+		y: 666,
 		radius: 110,
 		transition: 8
 	});
 	var a_quene = new $c({
 		id: "a_quene",
 		title:["人工","队列"],
-		x: 1270,
-		y: 626,
+		x: 835,
+		y: 666,
 		radius: 110,
 		transition: 8
 	});
-	var vdn = new $c({
-		id: "vdn",
-		title:["vdn"],
-		x: 1311,
-		y: 1029,
-		radius: 80,
-		transition: 8,
-		borderColor: "#339588",
-		ew_normal_fg: "#339588",
-		ew_normal_bg: "#3AAA99",
-		ew_normal_shadow: "#1B423C",
-		ew_2_fg: "#339588",
-		ew_2_bg: "#3AAA99",
-		ew_2_shadow: "#1B423C"
-	});
+
 	var hotline_selfsupport = new $c({
 		id: "hotline_selfsupport",
 		title:["热线","自营"],
-		x: 762,
-		y: 1237,
-		radius: 150,
+		x: 384,
+		y: 1201,
+		radius: 141,
 		transition: 8
 	});
 	var hotline_wb = new $c({
 		id: "hotline_wb",
 		title:["热线","外包"],
-		x: 1655,
-		y: 1237,
-		radius: 150,
+		x: 1325,
+		y: 1201,
+		radius: 141,
 		transition: 8
 	});
 
 	var online = new $c({
 		id: "online",
 		x: 2780,
-		title:["在线","online"],
+		title:["在&nbsp;&nbsp;线","online"],
 		y:100,
+		isAnimate:"false",
 		radius: 170,
 		transition: 8,
 		borderColor: "#879FCB",
-		ew_normal_fg: "#7486A7",
-		ew_normal_bg: "#879FCB",
-		ew_normal_shadow: "#1B423C",
-		ew_2_fg: "#7486A7",
-		ew_2_bg: "#879FCB",
-		ew_2_shadow: "#1B423C",
-		_callback: function () {
-			this.childUDAnimate(100);
-		}
+		bgColor:"#879FCB",
+		ew_normal_shadow: "#7089b2"
 	});
 
-    var pc = new $c({
+  /*  var pc = new $c({
 		id: "pc",
 		x: 2655,
 		title:["PC"],
 		y:616,
 		radius: 100,
 		transition: 8,
-        borderColor: "#429cb7",
-		ew_normal_fg: "#3a889f",
-		ew_normal_bg: "#429cb7",
+      borderColor: "#3a889f",
+		bgColor: "#429cb7",
 		ew_normal_shadow: "#3a889f",
-		ew_2_fg: "#3a889f",
-		ew_2_bg: "#429cb7",
-		ew_2_shadow: "#429cb7",
-		_callback: function () {
-			this.childUDAnimate(100);
-		}
+		isAnimate:"false"
 	});
 
     var wireless = new $c({
@@ -185,48 +173,34 @@
 		y:616,
 		radius: 100,
 		transition: 8,
-      borderColor: "#429cb7",
-		ew_normal_fg: "#3a889f",
-		ew_normal_bg: "#429cb7",
+      borderColor: "#3a889f",
+		bgColor: "#429cb7",
 		ew_normal_shadow: "#3a889f",
-		ew_2_fg: "#3a889f",
-		ew_2_bg: "#429cb7",
-		ew_2_shadow: "#429cb7",
-		_callback: function () {
-			this.childUDAnimate(100);
-		}
-	});
+		isAnimate:"false"
+	});*/
     var pc_selfHelp = new $c({
 		id: "pc_selfHelp",
 		title:["PC","自助"],
-		x: 2335,
-		y: 1246,
-		radius: 110,
-		transition: 8,
-        _callback: function () {
-			this.childUDAnimate(50);
-		}
-
-	});
+		x: 2329,
+		y: 1339,
+		radius: 104,
+		transition: 8
+	 });
     var wireless_selfHelp = new $c({
 		id: "wireless_selfHelp",
 		title:["无线","自助"],
-		x: 3371,
-		y: 1246,
-		radius: 110,
-		transition: 8,
-        _callback: function () {
-			this.childUDAnimate(20);
-		}
-
-	});
+		x: 3361,
+		y: 1339,
+		radius: 104,
+		transition: 8
+   });
 
     var artificial_selfHelp = new $c({
 		id: "pc_slefHelp",
 		title:["人工","在线服务"],
-		x: 2809,
-		y: 1223,
-		radius: 150,
+		x: 2808,
+		y: 1314,
+		radius: 130,
 		transition: 8,
       _callback: function() {
 			this.childUDAnimate(60);
