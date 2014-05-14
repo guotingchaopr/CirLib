@@ -88,7 +88,7 @@
 				"height": this.height = this.dia + "px",
 				"webkitBorderRadius": this.dia + "px",
 				"background": this.bgColor,
-				"border": "6px solid " + this.borderColor,
+				//"border": "6px solid " + this.borderColor, 还是去掉Border 好一点 不然有锯齿
 				"borderRadius": this.dia + "px",
 				"boxShadow": "0 " +(~~(this.radius * 0.1)) + "px 0 " + this.ew_normal_shadow,
 				"overflow": "hidden",
