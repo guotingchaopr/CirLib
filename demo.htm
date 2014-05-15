@@ -44,13 +44,11 @@
 			box-shadow: -2px 2px 0px 2px #979FCA;
 		}
 		.halo {
-			-webkit-animation: halos 3s linear infinite;
+			-webkit-animation: halos 10s linear infinite;
 		}
 		.plane ,.flame ,.circle {
-			-webkit-animation: plane 15s linear infinite;
+			-webkit-animation: plane 20s linear infinite;
 		}
-
-
 		@-webkit-keyframes halos {
 			from {
 				-webkit-transform: rotate(-180deg);
@@ -254,14 +252,14 @@
 		halo_img(980, 1005, "circle");
 		halo_img(968, 1063, "flame");
 		halo_img(949, 1043, "plane");
-		var i = 0 ;
-		setInterval(function(){
+
+		var i = 0 , planeFlame = setInterval(function(){
 			if(i==0){
 					document.getElementsByClassName("flame")[0].style.visibility="visible";i=1;
 			}else{
 					document.getElementsByClassName("flame")[0].style.visibility="hidden";i=0;
 			}
-		},200);
+		},100);
 		/*setTimeout(function () {
 		document.body.style.background = "url(../img/bg.jpg) 100% 100% no-repeat";
 	}, 3000);*/
