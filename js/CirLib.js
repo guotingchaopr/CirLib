@@ -93,7 +93,7 @@
 					"background": this.bgColor,
 					//"border": "6px solid " + this.borderColor, 还是去掉Border 好一点 不然有锯齿
 					"borderRadius": this.dia + "px",
-					"boxShadow": "inset 0 " + (~~(this.radius * 0.1)) + "px 0 " + this.ew_normal_shadow,
+					"boxShadow": "0 " + (~~(this.radius * 0.1)) + "px 0 " + this.ew_normal_shadow,
 					"overflow": "hidden",
 					"transition": ~~(this.transition / 2) + "s",
 					"cursor": "pointer"
@@ -182,17 +182,17 @@
 
 					if (covered_top >= this.ew_2_limit) {
 						this._self.style.borderColor = this.ew_2_fg;
-						this._self.style.boxShadow = "inset 0 " + (~~(this.radius * 0.1)) + "px 0 " + this.ew_2_shadow;
+						this._self.style.boxShadow = "0 " + (~~(this.radius * 0.1)) + "px 0 " + this.ew_2_shadow;
 						this.childs[0].style.color = this.ew_2_fg;
 						this.childs[1].style.color = this.ew_2_bg;
 					} else if (covered_top >= this.ew_1_limit) {
 						this._self.style.borderColor = this.ew_1_fg;
-						this._self.style.boxShadow = "inset 0 " + (~~(this.radius * 0.1)) + "px 0 " + this.ew_1_shadow;
+						this._self.style.boxShadow = "0 " + (~~(this.radius * 0.1)) + "px 0 " + this.ew_1_shadow;
 						this.childs[0].style.color = this.ew_1_fg;
 						this.childs[1].style.color = this.ew_1_bg;
 					} else {
 						this._self.style.borderColor = this.ew_normal_fg;
-						this._self.style.boxShadow = "inset 0 " + (~~(this.radius * 0.1)) + "px 0 " + this.ew_normal_shadow;
+						this._self.style.boxShadow = "0 " + (~~(this.radius * 0.1)) + "px 0 " + this.ew_normal_shadow;
 						this.childs[0].style.color = this.ew_normal_fg;
 						this.childs[1].style.color = this.ew_normal_bg;
 					}
