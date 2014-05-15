@@ -47,7 +47,7 @@
 			-webkit-animation: halos 10s linear infinite;
 		}
 		.plane ,.flame ,.circle {
-			-webkit-animation: plane 20s linear infinite;
+			/*-webkit-animation: plane 20s linear infinite*/;
 		}
 		@-webkit-keyframes halos {
 			from {
@@ -242,7 +242,7 @@
 			halo.style.position = "absolute";
 			halo.style.left = left + "px";
 			halo.style.top = top + "px";
-			halo.style.zIndex = "-9999";
+			halo.style.zIndex = "-999";
 			halo.onload = function () {
 				document.body.appendChild(halo);
 			}
