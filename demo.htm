@@ -47,44 +47,30 @@
 			-webkit-animation:halos 3s linear infinite;
         }
 
-        .plane{
-             -webkit-transform:rotate(90deg);
-             -webkit-animation:plane 10s linear infinite;
-        }
+	  .plane{
+			 transform: translateZ(0);
+			 -webkit-animation:plane 15s linear infinite;
+
+	  }
         @-webkit-keyframes halos{
-			from{-webkit-transform:rotate(0deg);}
-			to{-webkit-transform:rotate(360deg);}
+			from{-webkit-transform:rotate(-180deg);}
+			to{-webkit-transform:rotate(180deg);}
 		}
 
 
         @-webkit-keyframes plane{
+
             0%{
-                 -webkit-transform:rotate(90deg);
-                left:949;
-                top:1043;
-            }
-            25%{
-                -webkit-transform:rotate(110deg);
-                left:2000;
-                top:1060;
-            }
-            50%{
-                -webkit-transform:rotate(270deg);
-                left:2650px;
-                top:1265px;
-            }
+                -webkit-transform: translate3d(0, 0,0) rotate3d(0.0 , 0.0 , 0.1,90deg);
+				}
 
-            75%{
-                -webkit-transform:rotate(270deg);
-                left:2000x;
-                top:1060px;
-            }
-            100%{
-                -webkit-transform:rotate(450deg);
-                left:949;
-                top:1043;
-            }
+            40%{
+					 -webkit-transform: translate3d(780px, 30px,0) rotate3d(0.0 , 0.0 , 0.1,100deg);
+				}
 
+			   100%{
+                -webkit-transform: translate3d(1950px, 290px,0) rotate3d(0.0 , 0.0 , 0.1,120deg);
+            }
 		}
 	</style>
 </head>
@@ -257,8 +243,7 @@
         halo.onload = function(){
             document.body.appendChild(halo);
         }
-
-    }
+	 }
     halo_img(726,565,"halo");halo_img(1287,565,"halo");
     halo_img(949,1043,"plane");
 	/*setTimeout(function () {

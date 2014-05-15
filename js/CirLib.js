@@ -68,15 +68,18 @@
 			//this._self.style.webkitAnimationDirection = "alternate";
 			if(this.isAnimate == "true"){
 				this.createAnimateWidget(); //组装内部模块
+					for(var i = 0; i< this.title.length; i++ ){ //文字or图片拼装
+						var widget =document.createElement("p");
+						widget.style.fontSize = ~~(this.radius / (i+1) * 0.5 )+ "px" ;
+						widget.innerHTML += this.title[i];
+						widget.style.top = ~~(this.radius * 0.6) + "px" ;
+						widget.className +="cir_title";
+						this.containWith(this._self,widget);
+					}
+			}else{
+				circle.style.display = "none";
 			}
-			for(var i = 0; i< this.title.length; i++ ){ //文字or图片拼装
-				var widget =document.createElement("p");
-				widget.style.fontSize = ~~(this.radius / (i+1) * 0.5 )+ "px" ;
-				widget.innerHTML += this.title[i];
-				widget.style.top = ~~(this.radius * 0.6) + "px" ;
-				widget.className +="cir_title";
-				this.containWith(this._self,widget);
-			}
+
 			return circle;
 		},
 		cssRules: function () {
