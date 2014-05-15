@@ -46,8 +46,11 @@
 		.halo {
 			-webkit-animation: halos 10s linear infinite;
 		}
-		.plane ,.flame ,.circle {
-			/*-webkit-animation: plane 20s linear infinite*/;
+		.plane,
+		.flame,
+		.circle {
+			/*-webkit-animation: plane 20s linear infinite*/
+			;
 		}
 		@-webkit-keyframes halos {
 			from {
@@ -235,7 +238,7 @@
 
 		});
 
-		var halo_img = function (left, top, name) {
+		var halo_img = function (left, top, name, callback) {
 			var halo = new Image();
 			halo.className = name;
 			halo.src = "img/" + name + ".png";
@@ -245,21 +248,24 @@
 			halo.style.zIndex = "-999";
 			halo.onload = function () {
 				document.body.appendChild(halo);
+				if(callback)callback();
 			}
 		}
 		halo_img(726, 565, "halo");
 		halo_img(1287, 565, "halo");
 		halo_img(980, 1005, "circle");
-		halo_img(968, 1063, "flame");
+		halo_img(968, 1063, "flame", function () {
+			var i =0,flameInterval = setInterval(function () {
+				if (i == 0) {
+					document.getElementsByClassName("flame")[0].style.visibility = "visible";
+					i = 1;
+				} else {
+					document.getElementsByClassName("flame")[0].style.visibility = "hidden";
+					i = 0;
+				}
+			}, 30);
+		});
 		halo_img(949, 1043, "plane");
-
-		var i = 0 , planeFlame = setInterval(function(){
-			if(i==0){
-					document.getElementsByClassName("flame")[0].style.visibility="visible";i=1;
-			}else{
-					document.getElementsByClassName("flame")[0].style.visibility="hidden";i=0;
-			}
-		},30);
 		/*setTimeout(function () {
 		document.body.style.background = "url(../img/bg.jpg) 100% 100% no-repeat";
 	}, 3000);*/
