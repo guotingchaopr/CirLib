@@ -54,8 +54,12 @@
 			-webkit-animation: water_top_1 1s linear infinite;
 		}
 		.water_top_1_left{
-			-webkit-animation: water_top_1_left 1s linear infinite;
+			-webkit-animation: water_top_1_left 2s linear infinite;
 		}
+        .water_top_1_right{
+			-webkit-animation: water_top_1_right 2s linear infinite;
+		}
+
 		@-webkit-keyframes halos {
 			from {
 				-webkit-transform: rotate(-180deg);
@@ -92,13 +96,28 @@
 			  }
 		}
 		@-webkit-keyframes water_top_1_left{
-			0% {
-				 left:925px;
-				 top:510px;
+			 0%{
+
+                 -webkit-transform:translate3d(-100px, 0, 0);
 			 }
 			 80%{
-				 left:350px;
+				 -webkit-transform:translate3d(-560px, 0, 0);
 			 }
+            100%{
+                 -webkit-transform:translate3d(-570px, 155px, 0);
+            }
+		}
+        @-webkit-keyframes water_top_1_right{
+			 0%{
+
+                 -webkit-transform:translate3d(100px, 0, 0);
+			 }
+			 80%{
+				 -webkit-transform:translate3d(560px, 0, 0);
+			 }
+            100%{
+                 -webkit-transform:translate3d(570px, 155px, 0);
+            }
 		}
 	</style>
 </head>
