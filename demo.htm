@@ -49,6 +49,13 @@
 		.plane,.flame,.circle {
 			-webkit-animation: plane 20s linear infinite;
 		}
+		/* 11滴水 */
+		.water_top_1{
+			-webkit-animation: water_top_1 1s linear infinite;
+		}
+		.water_top_1_left{
+			-webkit-animation: water_top_1_left 1s linear infinite;
+		}
 		@-webkit-keyframes halos {
 			from {
 				-webkit-transform: rotate(-180deg);
@@ -71,8 +78,27 @@
 				-webkit-transform: translate3d(1060px, 60px, 0) rotate3d(0.0, 0.0, 0.1, 12deg);
 			}
 			100% {
-				-webkit-transform: translate3d(1950px, 290px, 0) rotate3d(0.0, 0.0, 0.1, 25deg);
+				-webkit-transform: translate3d(1900px, 310px, 0) rotate3d(0.0, 0.0, 0.1, 25deg);
 			}
+		}
+
+		@-webkit-keyframes water_top_1 {
+			 from {
+				 left:925px;
+				 top:499px;
+			 }
+			 to{
+				 top:645px;
+			  }
+		}
+		@-webkit-keyframes water_top_1_left{
+			0% {
+				 left:925px;
+				 top:510px;
+			 }
+			 80%{
+				 left:350px;
+			 }
 		}
 	</style>
 </head>
@@ -235,10 +261,10 @@
 
 		});
 
-		var halo_img = function (left, top, name, callback) {
+		var halo_img = function (left, top, name,file, callback) {
 			var halo = new Image();
 			halo.className = name;
-			halo.src = "img/" + name + ".png";
+			halo.src = "img/" + (file==undefined?name:file)+ ".png";
 			halo.style.position = "absolute";
 			halo.style.left = left + "px";
 			halo.style.top = top + "px";
@@ -251,7 +277,7 @@
 		halo_img(726, 565, "halo");
 		halo_img(1287, 565, "halo");
 		halo_img(980, 1005, "circle");
-		halo_img(968, 1063, "flame", function () {
+		halo_img(968, 1063, "flame",undefined,function () {
 			var i =0,flameInterval = setInterval(function () {
 				if (i == 0) {
 					document.getElementsByClassName("flame")[0].style.visibility = "visible";
@@ -263,9 +289,9 @@
 			}, 30);
 		});
 		halo_img(949, 1043, "plane");
-		/*setTimeout(function () {
-		document.body.style.background = "url(../img/bg.jpg) 100% 100% no-repeat";
-	}, 3000);*/
+		halo_img(925, 505, "water_top_1","water");
+		halo_img(880, 510, "water_top_1_left","water");
+		halo_img(925, 505, "water_top_1_right","water");
 	</script>
 
 </body>
