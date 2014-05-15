@@ -424,8 +424,8 @@
             }
             animateImg(726, 565, "halo");
             animateImg(1287, 565, "halo");
-            animateImg(980, 1005, "circle");
-            animateImg(968, 1063, "flame", undefined, function () {
+            animateImg(980, 1005, "circle",undefined,function(){
+                animateImg(968, 1063, "flame", undefined, function(){
                 var i = 0,
                     flameInterval = setInterval(function () {
                         if (i == 0) {
@@ -436,8 +436,10 @@
                             i = 0;
                         }
                     }, 30);
+                    animateImg(949, 1043, "plane");
+                });
             });
-            animateImg(949, 1043, "plane");
+
             animateImg(925, 505, "water_top_1", "water");
             animateImg(880, 510, "water_top_1_left", "water");
             animateImg(925, 505, "water_top_1_right", "water");
