@@ -1,0 +1,31 @@
+{
+    "halo_1": {
+        "x": 726,
+        "y": 565,
+        "name": "halo"
+    },
+    "halo_2": {
+        "x": 1287,
+        "y": 565,
+        "name": "halo"
+    },
+    "circle": {
+        "x": 980,
+        "y": 1005,
+        "name": "circle",
+        "file": "undefined"
+    },
+    "flame": {
+        "x": 968,
+        "y": 1063,
+        "name": "flame",
+        "file": "undefined"
+    },
+    "plane": {
+        "x": 949,
+        "y": 1043,
+        "name": "plane",
+        "file": "undefined",
+        "callback": "flame_callBack"
+    }
+}

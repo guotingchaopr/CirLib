@@ -15,35 +15,37 @@
 	Cir.kernel = Cir.prototype = {
 		x: 0,
 		y: 0,
-		_callback:undefined,
+		_callback: undefined,
 		_self: undefined,
 		id: new Date().getTime(),
 		radius: 0,
 		transition: "0.3",
-		title : [],
+		title: [],
 		height: 0,
 		width: 0,
+		bgColor: "#3a3b3c",
 		state: "infinite",
-		iconFont_1: "&#xe602",
-		iconFont_2: "&#xe601",
+		iconFont_1: "&#xe608",
+		iconFont_2: "&#xe60a",
 		iconFont_className: " iconfont",
 		animateWay: undefined,
 		parentEl: undefined,
 		borderColor: "#5A9662",
 		ew_1: 60,
 		ew_2: 80,
-		ew_normal_fg: "#5A9662",
-		ew_normal_bg: "#66AB70",
-		ew_normal_shadow: "#5A9662",
-		ew_1_fg: "#ECA539",
-		ew_1_bg: "#D09132",
+		ew_normal_fg: "#30763A",
+		ew_normal_bg: "#3CA44F",
+		ew_normal_shadow: "#30763A",
+		ew_1_fg: "#D09132",
+		ew_1_bg: "#ECA539",
 		ew_1_shadow: "#675235",
-		ew_2_fg: "#D94D4C",
-		ew_2_bg: "#C04444",
+		ew_2_fg: "#C04444",
+		ew_2_bg: "#D94D4C",
 		ew_2_shadow: "#5F3D3C",
 		ew_1_limit: 0,
 		ew_2_limit: 0,
 		ew_rate: 0,
+		isAnimate: "true",
 		init: function (config) {
 			for (var cf in config) {
 				this[cf] = config[cf] || this[cf];
@@ -53,23 +55,31 @@
 			}
 			this.dia = this.radius * 2;
 			this.parentEl.appendChild(this.createCir());
-			if(this._callback)this._callback.apply(this);
+			if (this._callback) this._callback.apply(this);
 			return this;
 		},
 		createCir: function () {
 			var circle = this._self = document.createElement("div");
 			circle.id = this.id;
-			var cssRule = this.cssRules(this.x, this.y, this.radius);
+			var cssRule = this.cssRules();
 			for (var style in cssRule) {
 				circle.style[style] = cssRule[style];
 			}
-			if (this.animateWay) {
-				this.insertCSSRule(this.animateWay);
-				this._self.style.webkitAnimation = this.id + " " + this.transition + "s " + this.state;
-				this._self.style.webkitAnimationTimingFunction = "linear";
+			//this._self.style.webkitAnimationDirection = "alternate";
+			if (this.isAnimate == "true") {
+				this.createAnimateWidget(); //组装内部模块
+				for (var i = 0; i < this.title.length; i++) { //文字or图片拼装
+					var widget = document.createElement("p");
+					widget.style.fontSize = ~~ (this.radius / (i + 1) * 0.5) + "px";
+					widget.innerHTML += this.title[i];
+					widget.style.top = ~~ (this.radius * 0.6) + "px";
+					widget.className += "cir_title";
+					this.containWith(this._self, widget);
+				}
+			} else {
+				circle.style.display = "none";
 			}
 
-			this.createAnimateWidget(); //组装内部模块
 			return circle;
 		},
 		cssRules: function () {
@@ -80,10 +90,10 @@
 				"width": this.width = this.dia + "px",
 				"height": this.height = this.dia + "px",
 				"webkitBorderRadius": this.dia + "px",
-				"background": "#3a3b3c",
-				"border": (~~(this.dia / 38)) + "px solid " + this.borderColor,
+				"background": this.bgColor,
+				//"border": "6px solid " + this.borderColor, 还是去掉Border 好一点 不然有锯齿
 				"borderRadius": this.dia + "px",
-				"boxShadow": "0 0 " + ~~(this.dia / 3) + "px " + this.ew_normal_shadow,
+				"boxShadow": "0 " + (~~(this.radius * 0.1)) + "px 0 " + this.ew_normal_shadow,
 				"overflow": "hidden",
 				"transition": ~~(this.transition / 2) + "s",
 				"cursor": "pointer"
@@ -125,13 +135,13 @@
 			return keyframes;
 		},
 		createAnimateWidget: function () {
-			var inner_el_1 = document.createElement("div");
+			var inner_el_1 = document.createElement("i");
 			inner_el_1.id = this.id + "_child_1";
 			inner_el_1.className += this.iconFont_className;
 			inner_el_1.style.color = this.ew_normal_fg;
 			inner_el_1.innerHTML = this.iconFont_1;
 			inner_el_1.style.fontSize = this.dia * 2;
-			var inner_el_2 = document.createElement("div");
+			var inner_el_2 = document.createElement("i");
 			inner_el_2.id = this.id + "_child_2";
 			inner_el_2.innerHTML = this.iconFont_2;
 			inner_el_2.className += this.iconFont_className;
@@ -154,15 +164,6 @@
 				childs[i].style.webkitAnimation = this.id + "_child " + this.transition + "s " + this.state;
 				childs[i].style.webkitAnimationTimingFunction = "linear";
 			}
-			for(var i = 0; i< this.title.length; i++ ){
-				var textWidget = document.createElement("p");
-				textWidget.style.fontSize = (this.radius / (i+1) * 0.45 )+ "px" ;
-				textWidget.innerHTML= this.title[i];
-				textWidget.style.top = (this.radius * 0.7) + "px" ;
-				textWidget.className +="cir_title";
-				this.containWith(this._self,textWidget);
-			}
-
 		},
 		containWith: function (fromEl, toEl) {
 			return fromEl.appendChild(toEl);
@@ -173,42 +174,42 @@
 			currentDom.style.left = direction.left;
 		},
 		childUDAnimate: function (top) {
-			var covered_top = top * this.ew_rate;
-
-			for (var i = 0; i < 2 ; i++) {
-				this.childs[i].style.top = -(~~(covered_top / 2));
+			var _top = top > 100 ? 100 : top;
+			var covered_top = _top * this.ew_rate;
+			for (var i = 0; i < 2; i++) {
+				this.childs[i].style.top = -((covered_top + (this.radius * 0.11)));
 			}
 
 			if (covered_top >= this.ew_2_limit) {
-				this._self.style.borderColor = this.ew_2_bg;
-				this._self.style.boxShadow = "0 0 " + ~~(this.dia / 3) + "px " + this.ew_2_shadow;
-				this.childs[0].style.color = this.ew_2_bg;
-				this.childs[1].style.color = this.ew_2_fg;
+				this._self.style.borderColor = this.ew_2_fg;
+				this._self.style.boxShadow = "0 " + (~~(this.radius * 0.1)) + "px 0 " + this.ew_2_shadow;
+				this.childs[0].style.color = this.ew_2_fg;
+				this.childs[1].style.color = this.ew_2_bg;
 			} else if (covered_top >= this.ew_1_limit) {
-				this._self.style.borderColor = this.ew_1_bg;
-				this._self.style.boxShadow = "0 0 " + ~~(this.dia / 3) + "px " + this.ew_1_shadow;
-				this.childs[0].style.color = this.ew_1_bg;
-				this.childs[1].style.color = this.ew_1_fg;
+				this._self.style.borderColor = this.ew_1_fg;
+				this._self.style.boxShadow = "0 " + (~~(this.radius * 0.1)) + "px 0 " + this.ew_1_shadow;
+				this.childs[0].style.color = this.ew_1_fg;
+				this.childs[1].style.color = this.ew_1_bg;
 			} else {
-				this._self.style.borderColor = this.ew_normal_bg;
-				this._self.style.boxShadow = "0 0 " + ~~(this.dia / 3) + "px " + this.ew_normal_shadow;
-				this.childs[0].style.color = this.ew_normal_bg;
-				this.childs[1].style.color = this.ew_normal_fg;
+				this._self.style.borderColor = this.ew_normal_fg;
+				this._self.style.boxShadow = "0 " + (~~(this.radius * 0.1)) + "px 0 " + this.ew_normal_shadow;
+				this.childs[0].style.color = this.ew_normal_fg;
+				this.childs[1].style.color = this.ew_normal_bg;
 			}
 		}
 	};
 	Cir.kernel.extend =
-		function() {
+		function () {
 			var src, copy, name, options,
 				target = arguments[0] || {};
-			i = 1,
+			var i = 1,
 			length = arguments.length;
 			if (length === i) {
 				target = this;
 				i--;
 			}
 			for (; i < length; i++) {
-				if ((options = arguments[i]) != null) {
+				if ((options = arguments[i]) !== null) {
 					for (name in options) {
 						src = options[name];
 						copy = target[name];
