@@ -51,45 +51,45 @@
         .circle {
             -webkit-animation: plane 20s linear infinite;
         }
-        /* 11滴水 */
+        /* 13 滴水 */
         .water_top_1 {
-            -webkit-animation: water_top_1 1s linear infinite;
+            -webkit-animation: water_top_1 0.5s linear infinite;
         }
         .water_top_1_left {
-            -webkit-animation: water_top_1_left 2s linear infinite;
+            -webkit-animation: water_top_1_left 1s linear infinite;
         }
         .water_top_1_right {
-            -webkit-animation: water_top_1_right 2s linear infinite;
+            -webkit-animation: water_top_1_right 1s linear infinite;
         }
         .water_middle_left {
-            -webkit-animation: water_middle_left 2s linear infinite;
+            -webkit-animation: water_middle_left 1s linear infinite;
         }
         .water_bottom_1_left {
-            -webkit-animation: water_bottom_1_left 1s linear infinite;
+            -webkit-animation: water_bottom_1_left 0.5s linear infinite;
         }
         .water_bottom_1_right {
-            -webkit-animation: water_bottom_1_right 1s linear infinite;
+            -webkit-animation: water_bottom_1_right 0.5s linear infinite;
         }
         .water_top_2{
-            -webkit-animation: water_top_2 0.5s linear infinite;
+            -webkit-animation: water_top_2 0.3s linear infinite;
         }
         .water_top_2_left{
-             -webkit-animation: water_top_2_left 1s linear infinite;
+             -webkit-animation: water_top_2_left 0.5s linear infinite;
         }
         .water_top_2_right{
-            -webkit-animation: water_top_2_right 1s linear infinite;
+            -webkit-animation: water_top_2_right 0.5s linear infinite;
         }
         .water_middle_1_left{
-            -webkit-animation: water_middle_1_left 2s linear infinite;
+            -webkit-animation: water_middle_1_left 1s linear infinite;
         }
         .water_middle_1_right{
-            -webkit-animation: water_middle_1_right 2s linear infinite;
+            -webkit-animation: water_middle_1_right 1s linear infinite;
         }
         .water_middle_2_left{
-            -webkit-animation: water_middle_2_left 2s linear infinite;
+            -webkit-animation: water_middle_2_left 1s linear infinite;
         }
         .water_middle_2_right{
-            -webkit-animation: water_middle_2_right 2s linear infinite;
+            -webkit-animation: water_middle_2_right 1s linear infinite;
         }
          /* 11滴水 */
         @-webkit-keyframes halos {
@@ -411,6 +411,7 @@
         window.onload = function () {
             var animateImg = function (left, top, name, file, callback) {
                 var halo = new Image();
+					 eval("window." + name +" = halo;");
                 halo.className = name;
                 halo.src = "img/" + (file == undefined ? name : file) + ".png";
                 halo.style.position = "absolute";
@@ -426,17 +427,18 @@
             animateImg(1287, 565, "halo");
             animateImg(980, 1005, "circle",undefined,function(){
                 animateImg(968, 1063, "flame", undefined, function(){
-                var i = 0,
+                    animateImg(949, 1043, "plane",undefined,function(){
+							  var i = 0,
                     flameInterval = setInterval(function () {
                         if (i == 0) {
-                            document.getElementsByClassName("flame")[0].style.visibility = "visible";
+                            window.flame.style.visibility = "visible";
                             i = 1;
                         } else {
-                            document.getElementsByClassName("flame")[0].style.visibility = "hidden";
+                            window.flame.style.visibility = "hidden";
                             i = 0;
                         }
                     }, 30);
-                    animateImg(949, 1043, "plane");
+						  });
                 });
             });
 
