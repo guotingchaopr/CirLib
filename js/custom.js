@@ -4,7 +4,7 @@
     var reader = new Reader(2);
     reader.open("js/config.json", function () {
         var configs = {};
-        reader.read(2048, function (err, data) {
+        reader.read(5120, function (err, data) {
             //console.log();
             var configs_str = String.fromCharCode.apply(null, new Uint8Array(data));
             configs = JSON.parse(configs_str);
@@ -25,9 +25,10 @@
                 img.style.zIndex = "-999";
                 img.onload = function () {
                     document.body.appendChild(img);
-                    if (params.callback) params.callback();
+                    if (params.callback!=undefined) eval(params.callback+".call()");
                 }
             }
+            //scan config
             for (var conf in configs) {
                 var config = configs[conf];
                 var parameters = {};
@@ -38,7 +39,7 @@
             }
 
 
-
+            //飞机喷火回调实现 (TODO :确保加载顺序)
             var flame_callBack = function () {
                 var i = 0,
                     flameInterval = setInterval(function () {
@@ -52,7 +53,7 @@
                     }, 35);
             };
 
-            animateImg(925, 505, "water_top_1", "water");
+           /* animateImg(925, 505, "water_top_1", "water");
             animateImg(925, 510, "water_top_1_left", "water");
             animateImg(925, 510, "water_top_1_right", "water");
             animateImg(925, 900, "water_middle_left", "water");
@@ -68,7 +69,7 @@
             animateImg(2730, 930, "water_middle_1_right", "water");
 
             animateImg(3125, 930, "water_middle_2_left", "water");
-            animateImg(3125, 930, "water_middle_2_right", "water");
+            animateImg(3125, 930, "water_middle_2_right", "water");*/
         }
         /***
          ***  页面业务拼装
