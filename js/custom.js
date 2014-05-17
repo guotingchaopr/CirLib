@@ -52,24 +52,6 @@
                         }
                     }, 35);
             };
-
-           /* animateImg(925, 505, "water_top_1", "water");
-            animateImg(925, 510, "water_top_1_left", "water");
-            animateImg(925, 510, "water_top_1_right", "water");
-            animateImg(925, 900, "water_middle_left", "water");
-            animateImg(925, 1450, "water_bottom_1_left", "water");
-            animateImg(925, 1450, "water_bottom_1_right", "water");
-
-
-            animateImg(2929, 470, "water_top_2", "water");
-            animateImg(2920, 550, "water_top_2_left", "water");
-            animateImg(2930, 550, "water_top_2_right", "water");
-
-            animateImg(2730, 930, "water_middle_1_left", "water");
-            animateImg(2730, 930, "water_middle_1_right", "water");
-
-            animateImg(3125, 930, "water_middle_2_left", "water");
-            animateImg(3125, 930, "water_middle_2_right", "water");*/
         }
         /***
          ***  页面业务拼装
