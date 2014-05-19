@@ -11,6 +11,7 @@
 					callback(res);
 				}
 			}
+			console.error(xhr.readyState + "请求错误");
 		}
 		xhr.send(null);
 	}
