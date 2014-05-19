@@ -9,11 +9,10 @@ body {
 }
 body {
     background-color: #111;
-    transition: 1s;
+    transition: 0.5s;
+}
+#bg{
     background: url(../img/path.jpg) no-repeat;
-    z-index: 999999;
-    /*	background: url(../img/bg.jpg) 100% 100% no-repeat;*/
-    /*	background-size: cover;*/
 }
 .cir_title {
     color: white;
