@@ -203,7 +203,7 @@
 			var src, copy, name, options,
 				target = arguments[0] || {};
 			var i = 1,
-			length = arguments.length;
+				length = arguments.length;
 			if (length === i) {
 				target = this;
 				i--;
@@ -226,6 +226,7 @@
 			return target;
 	};
 	Cir.kernel.init.prototype = Cir.kernel;
+
 	window.Cir = window.$c = Cir;
 	return Cir;
 })();

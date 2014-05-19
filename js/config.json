@@ -1,215 +1,215 @@
 {
-    "animate_position": {
-        "halo_1": {
-            "x": 726,
-            "y": 565,
-            "name": "halo"
-        },
-        "halo_2": {
-            "x": 1287,
-            "y": 565,
-            "name": "halo"
-        },
-        "circle": {
-            "x": 980,
-            "y": 1005,
-            "name": "circle"
-        },
-        "flame": {
-            "x": 968,
-            "y": 1063,
-            "name": "flame"
-        },
-        "plane": {
-            "x": 949,
-            "y": 1043,
-            "name": "plane",
-            "callback": "flame_callBack"
-        },
-        "water_top_1": {
-            "x": 925,
-            "y": 505,
-            "name": "water_top_1",
-            "file": "water"
-        },
-        "water_top_1_left": {
-            "x": 925,
-            "y": 505,
-            "name": "water_top_1_left",
-            "file": "water"
-        },
-        "water_top_1_right": {
-            "x": 925,
-            "y": 505,
-            "name": "water_top_1_right",
-            "file": "water"
-        },
-        "water_middle_left": {
-            "x": 925,
-            "y": 900,
-            "name": "water_middle_left",
-            "file": "water"
-        },
-        "water_bottom_1_left": {
-            "x": 925,
-            "y": 1450,
-            "name": "water_bottom_1_left",
-            "file": "water"
-        },
-        "water_bottom_1_right": {
-            "x": 925,
-            "y": 1450,
-            "name": "water_bottom_1_right",
-            "file": "water"
-        },
-        "water_top_2": {
-            "x": 2929,
-            "y": 470,
-            "name": "water_top_2",
-            "file": "water"
-        },
-        "water_top_2_left": {
-            "x": 2920,
-            "y": 550,
-            "name": "water_top_2_left",
-            "file": "water"
-        },
-        "water_top_2_right": {
-            "x": 2930,
-            "y": 550,
-            "name": "water_top_2_right",
-            "file": "water"
-        },
-        "water_middle_1_left": {
-            "x": 2730,
-            "y": 930,
-            "name": "water_middle_1_left",
-            "file": "water"
-        },
-        "water_middle_1_right": {
-            "x": 2730,
-            "y": 930,
-            "name": "water_middle_1_right",
-            "file": "water"
-        },
-        "water_middle_2_left": {
-            "x": 3125,
-            "y": 930,
-            "name": "water_middle_2_left",
-            "file": "water"
-        },
-        "water_middle_2_right": {
-            "x": 3125,
-            "y": 930,
-            "name": "water_middle_2_right",
-            "file": "water"
-        }
-    },
-    "dataset_position": {
-        "transfer_name" : "%E8%BD%AC%E6%8E%A5%E9%87%8F",
-        "transfers" :[
-            {
-                "id" : "transfer_1",
-                "x": 423,
-                "y": 579
+	"animate_position": {
+		"halo_1": {
+			"x": 726,
+			"y": 565,
+			"name": "halo"
+		},
+		"halo_2": {
+			"x": 1287,
+			"y": 565,
+			"name": "halo"
+		},
+		"circle": {
+			"x": 980,
+			"y": 1005,
+			"name": "circle"
+		},
+		"flame": {
+			"x": 968,
+			"y": 1063,
+			"name": "flame"
+		},
+		"plane": {
+			"x": 949,
+			"y": 1043,
+			"name": "plane",
+			"callback": "flame_callBack"
+		},
+		"water_top_1": {
+			"x": 925,
+			"y": 505,
+			"name": "water_top_1",
+			"file": "water"
+		},
+		"water_top_1_left": {
+			"x": 925,
+			"y": 505,
+			"name": "water_top_1_left",
+			"file": "water"
+		},
+		"water_top_1_right": {
+			"x": 925,
+			"y": 505,
+			"name": "water_top_1_right",
+			"file": "water"
+		},
+		"water_middle_left": {
+			"x": 925,
+			"y": 900,
+			"name": "water_middle_left",
+			"file": "water"
+		},
+		"water_bottom_1_left": {
+			"x": 925,
+			"y": 1450,
+			"name": "water_bottom_1_left",
+			"file": "water"
+		},
+		"water_bottom_1_right": {
+			"x": 925,
+			"y": 1450,
+			"name": "water_bottom_1_right",
+			"file": "water"
+		},
+		"water_top_2": {
+			"x": 2929,
+			"y": 470,
+			"name": "water_top_2",
+			"file": "water"
+		},
+		"water_top_2_left": {
+			"x": 2920,
+			"y": 550,
+			"name": "water_top_2_left",
+			"file": "water"
+		},
+		"water_top_2_right": {
+			"x": 2930,
+			"y": 550,
+			"name": "water_top_2_right",
+			"file": "water"
+		},
+		"water_middle_1_left": {
+			"x": 2730,
+			"y": 930,
+			"name": "water_middle_1_left",
+			"file": "water"
+		},
+		"water_middle_1_right": {
+			"x": 2730,
+			"y": 930,
+			"name": "water_middle_1_right",
+			"file": "water"
+		},
+		"water_middle_2_left": {
+			"x": 3125,
+			"y": 930,
+			"name": "water_middle_2_left",
+			"file": "water"
+		},
+		"water_middle_2_right": {
+			"x": 3125,
+			"y": 930,
+			"name": "water_middle_2_right",
+			"file": "water"
+		}
+	},
+	"dataset_position": {
+		"transfer_name": "%E8%BD%AC%E6%8E%A5%E9%87%8F",
+		"transfers": [
+			{
+				"id": "transfer_1",
+				"x": 423,
+				"y": 579
             },
-            {
-                "id" : "transfer_2",
-                "x": 757,
-                "y": 1517
+			{
+				"id": "transfer_2",
+				"x": 757,
+				"y": 1517
             },
-            {
-                "id" : "transfer_3",
-                "x": 1086,
-                "y": 579
+			{
+				"id": "transfer_3",
+				"x": 1086,
+				"y": 579
             },
-            {
-                "id" : "transfer_4",
-                "x": 1110,
-                "y": 723
+			{
+				"id": "transfer_4",
+				"x": 1110,
+				"y": 723
             },
-            {
-                "id" : "transfer_5",
-                "x": 1049,
-                "y": 1509
+			{
+				"id": "transfer_5",
+				"x": 1025,
+				"y": 1517
             },
-            {
-                "id" : "transfer_6",
-                "x": 1580,
-                "y": 576
+			{
+				"id": "transfer_6",
+				"x": 1580,
+				"y": 576
             },
-            {
-                "id" : "transfer_7",
-                "x": 2513,
-                "y": 1010
+			{
+				"id": "transfer_7",
+				"x": 2513,
+				"y": 1010
             },
-            {
-                "id" : "transfer_8",
-                "x": 2816,
-                "y": 610
+			{
+				"id": "transfer_8",
+				"x": 2816,
+				"y": 610
             },
-            {
-                "id" : "transfer_9",
-                "x": 2706,
-                "y": 1163
+			{
+				"id": "transfer_9",
+				"x": 2626,
+				"y": 1163
             },
-            {
-                "id" : "transfer_10",
-                "x": 3222,
-                "y": 615
+			{
+				"id": "transfer_10",
+				"x": 3222,
+				"y": 615
             },
-            {
-                "id" : "transfer_11",
-                "x": 3050,
-                "y": 1165
+			{
+				"id": "transfer_11",
+				"x": 3050,
+				"y": 1165
             },
-            {
-                "id" : "transfer_12",
-                "x": 3530,
-                "y": 1165
+			{
+				"id": "transfer_12",
+				"x": 3530,
+				"y": 1165
             }
         ],
-        "hang_label" : [
-            {
-                "id" : "hang_label_1",
-                "x"  : 462,
-                "y"  : 987
+		"hang_label": [
+			{
+				"id": "hang_label_1",
+				"x": 462,
+				"y": 987
             },
-            {
-                "id" : "hang_label_2",
-                "x"  : 1061,
-                "y"  : 976
+			{
+				"id": "hang_label_2",
+				"x": 1061,
+				"y": 976
             },
-            {
-                "id" : "hang_label_3",
-                "x"  : 1237,
-                "y"  : 374
+			{
+				"id": "hang_label_3",
+				"x": 1237,
+				"y": 374
             },
-            {
-                "id" : "hang_label_4",
-                "x"  : 1489,
-                "y"  : 919
+			{
+				"id": "hang_label_4",
+				"x": 1489,
+				"y": 919
             },
-            {
-                "id" : "hang_label_5",
-                "x"  : 2011,
-                "y"  : 1322
+			{
+				"id": "hang_label_5",
+				"x": 2011,
+				"y": 1322
             },
-            {
-                "id" : "hang_label_6",
-                "x"  : 2300,
-                "y"  : 632
+			{
+				"id": "hang_label_6",
+				"x": 2300,
+				"y": 632
             },
-            {
-                "id" : "hang_label_7",
-                "x"  : 3210,
-                "y"  : 434
+			{
+				"id": "hang_label_7",
+				"x": 3210,
+				"y": 434
             },
-            {
-                "id" : "hang_label_8",
-                "x"  : 3335,
-                "y"  : 808
+			{
+				"id": "hang_label_8",
+				"x": 3335,
+				"y": 808
             }
         ]
-    }
+	}
 }
