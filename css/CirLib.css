@@ -44,12 +44,30 @@ body {
     animation-timing-function: linear;
     -webkit-animation-timing-function: linear;
 }
+.dataset {
+    position: absolute;
+    color: #ff8406;
+}
+.dataset i {
+    color: white;
+    font-size: 36px;
+    font-style: normal;
+}
+.dataset p:nth-child(n+1) {
+    font-size: 36px;
+}
+/** for circle **/
+
 .front {
     transition: color 0.3s ease;
 }
 .back {
     transition: 0.3s;
 }
+/** for circle **/
+
+/** plane and flame **/
+
 .halo {
     -webkit-animation: halos 10s linear infinite;
 }
@@ -58,7 +76,9 @@ body {
 .circle {
     -webkit-animation: plane 20s linear infinite;
 }
-/* 13 滴水 */
+/** plane and flame **/
+
+/*  thirteen water */
 
 .water_top_1 {
     -webkit-animation: water_top_1 0.5s linear infinite;
@@ -99,7 +119,9 @@ body {
 .water_middle_2_right {
     -webkit-animation: water_middle_2_right 1s linear infinite;
 }
-/* 11滴水 */
+/*  thirteen water */
+
+/** animate set **/
 
 @-webkit-keyframes halos {
     from {
@@ -255,3 +277,4 @@ body {
         -webkit-transform: translate3d(335px, 365px, 0);
     }
 }
+/** animate set **/

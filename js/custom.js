@@ -4,7 +4,7 @@
     var reader = new Reader(2);
     reader.open("js/config.json", function () {
         var configs = {};
-        reader.read(5120, function (err, data) {
+        reader.read(51200, function (err, data) {
             //console.log();
             var configs_str = String.fromCharCode.apply(null, new Uint8Array(data));
             configs = JSON.parse(configs_str);
@@ -13,31 +13,28 @@
         });
     });
     var init = function (configs) {
-            var animateImg = function () {
-                var params = arguments[0];
-                var img = new Image();
-                eval("window." + params.name + " = img;");
-                img.className = params.name;
-                img.src = "img/" + (params.file == undefined ? params.name : params.file) + ".png";
-                img.style.position = "absolute";
-                img.style.left = params.x + "px";
-                img.style.top = params.y + "px";
-                img.style.zIndex = "-999";
-                img.onload = function () {
-                    document.body.appendChild(img);
-                    if (params.callback!=undefined) eval(params.callback+".call()");
+            var animate_config = configs.animate_position;
+            var dataset_config = configs.dataset;
+            //动画图片处理
+            var animateImg = function (animate_configs) {
+                for (var conf in animate_configs) {
+                    var params = animate_configs[conf];
+                    var img = new Image();
+                    eval("window." + params.name + " = img;");
+                    img.className = params.name;
+                    img.src = "img/" + (params.file == undefined ? params.name : params.file) + ".png";
+                    img.style.position = "absolute";
+                    img.style.left = params.x + "px";
+                    img.style.top = params.y + "px";
+                    img.style.zIndex = "-999";
+                    img.onload = function () {
+                        if (params.callback != undefined) eval(params.callback + ".call()");
+                    }
+                    (function (_img) {
+                        document.body.appendChild(_img);
+                    }(img)) //prevent coverage by dom hack
                 }
             }
-            //scan config
-            for (var conf in configs) {
-                var config = configs[conf];
-                var parameters = {};
-                for (var value in config) {
-                    parameters[value] = config[value];
-                }
-                animateImg(parameters);
-            }
-
 
             //飞机喷火回调实现 (TODO :确保加载顺序)
             var flame_callBack = function () {
@@ -50,12 +47,34 @@
                             window.flame.style.visibility = "hidden";
                             i = 0;
                         }
-                    }, 35);
+                    }, 5000);
             };
+
+            //数据位置生成
+            var dataset_builder = function (dataset) {
+                for (var data in dataset) {
+                    var elem = document.createElement("div");
+                    elem.id = data;
+                    elem.className = "dataset";
+                    elem.style.top = dataset[data].y;
+                    elem.style.left = dataset[data].x;
+                    document.body.appendChild(elem);
+                    var elements = dataset[data].elements;
+                    for (var _elements in elements) {
+                        var elem_child = document.createElement("p");
+                        elem_child.innerHTML = decodeURI("<i>" + elements[_elements] + "</i>");
+                        elem.appendChild(elem_child);
+                    }
+
+                }
+            }
+
+            //scan config invoking
+            animateImg(animate_config);
+            dataset_builder(dataset_config);
+
         }
-        /***
-         ***  页面业务拼装
-         ***/
+        /*  页面业务拼装 */
     var load_flow = function (configs) {
         var applyStyle = function (elem, left, top, hasShadow) {
             elem.style.backgroundColor = "#000";
