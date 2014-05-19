@@ -14,7 +14,7 @@
     });
     var init = function (configs) {
             var animate_config = configs.animate_position;
-            var dataset_config = configs.dataset;
+            var dataset_config = configs.dataset_position;
             //动画图片处理
             var animateImg = function (animate_configs) {
                 for (var conf in animate_configs) {
@@ -47,33 +47,50 @@
                             window.flame.style.visibility = "hidden";
                             i = 0;
                         }
-                    }, 5000);
+                    }, 30);
             };
 
-            //数据位置生成
-            var dataset_builder = function (dataset) {
-                for (var data in dataset) {
-                    var elem = document.createElement("div");
-                    elem.id = data;
-                    elem.className = "dataset";
-                    elem.style.top = dataset[data].y;
-                    elem.style.left = dataset[data].x;
-                    document.body.appendChild(elem);
-                    var elements = dataset[data].elements;
-                    for (var _elements in elements) {
-                        var elem_child = document.createElement("p");
-                        elem_child.innerHTML = decodeURI("<i>" + elements[_elements] + "</i>");
-                        elem.appendChild(elem_child);
-                    }
-
+            //转接位置生成
+            var transfer_builder = function (transfer_name,transfers) {
+                for (var i =0; i < transfers.length;i++) {
+                    var tf = transfers[i];
+                    var main_elem = document.createElement("div");
+                    main_elem.id = tf.id;
+                    main_elem.className  = "transfer";
+                    main_elem.style.top  = tf.y;
+                    main_elem.style.left = tf.x;
+                    var transfer_name_label = document.createElement("i");
+                    var transfer_name_value = document.createElement("font");
+                    transfer_name_label.innerText= decodeURI(transfer_name);
+                    transfer_name_value.id = tf.id+"_value";
+                    transfer_name_value.style.fontSize = "36px";
+                    transfer_name_value.style.color="white";
+                    main_elem.appendChild(transfer_name_label);
+                    main_elem.appendChild(transfer_name_value);
+                    document.body.appendChild(main_elem);
+                }
+            }
+            var hangLabel_builder = function(hang_label){
+                for (var i =0; i < hang_label.length;i++) {
+                     var hl = hang_label[i];
+                     var main_elem = document.createElement("div");
+                     main_elem.id=hl.id;
+                     main_elem.style.top  = hl.y;
+                     main_elem.style.left = hl.x;
+                     main_elem.className  = "hangLabel";
+                     var hangLabel_name_label = document.createElement("i");
+                     hangLabel_name_label.innerText = "数据接入中";
+                     main_elem.appendChild(hangLabel_name_label);
+                     document.body.appendChild(main_elem);
                 }
             }
 
             //scan config invoking
             animateImg(animate_config);
-            dataset_builder(dataset_config);
-
+            transfer_builder(dataset_config.transfer_name,dataset_config.transfers);
+            hangLabel_builder(dataset_config.hang_label);
         }
+
         /*  页面业务拼装 */
     var load_flow = function (configs) {
         var applyStyle = function (elem, left, top, hasShadow) {
@@ -89,11 +106,11 @@
             return elem;
         }
 
-        var blackWall_1 = applyStyle(document.createElement("div"), 314, 1296, true);
+       /* var blackWall_1 = applyStyle(document.createElement("div"), 314, 1296, true);
         var blackWall_2 = applyStyle(document.createElement("div"), 1254, 1296, true);
         var blackWall_2 = applyStyle(document.createElement("div"), 2248, 1374);
         var blackWall_2 = applyStyle(document.createElement("div"), 2727, 1377, true);
-        var blackWall_2 = applyStyle(document.createElement("div"), 3208, 1370);
+        var blackWall_2 = applyStyle(document.createElement("div"), 3208, 1370);*/
         var ivr = new $c({
             id: "ivr",
             x: 779,
@@ -176,32 +193,6 @@
             bgColor: "#879FCB",
             ew_normal_shadow: "#7089b2"
         });
-
-        /*  var pc = new $c({
-		id: "pc",
-		x: 2655,
-		title:["PC"],
-		y:616,
-		radius: 100,
-		transition: 8,
-      borderColor: "#3a889f",
-		bgColor: "#429cb7",
-		ew_normal_shadow: "#3a889f",
-		isAnimate:"false"
-	});
-
-    var wireless = new $c({
-		id: "wireless",
-		x: 3045,
-		title:["无线"],
-		y:616,
-		radius: 100,
-		transition: 8,
-      borderColor: "#3a889f",
-		bgColor: "#429cb7",
-		ew_normal_shadow: "#3a889f",
-		isAnimate:"false"
-	});*/
         var pc_selfHelp = new $c({
             id: "pc_selfHelp",
             title: ["PC", "自助"],

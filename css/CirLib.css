@@ -10,8 +10,6 @@ body {
 body {
     background-color: #111;
     transition: 0.5s;
-}
-#bg{
     background: url(../img/path.jpg) no-repeat;
 }
 .cir_title {
@@ -43,17 +41,23 @@ body {
     animation-timing-function: linear;
     -webkit-animation-timing-function: linear;
 }
-.dataset {
+.transfer{
     position: absolute;
     color: #ff8406;
 }
-.dataset i {
-    color: white;
-    font-size: 36px;
+.transfer i{
     font-style: normal;
-}
-.dataset p:nth-child(n+1) {
     font-size: 36px;
+    margin-right: 30px;
+}
+.hangLabel{
+   position: absolute;
+   color: #ff8406;
+}
+.hangLabel i{
+    font-style: normal;
+    font-size: 36px;
+    margin-right: 30px;
 }
 /** for circle **/
 
