@@ -164,7 +164,7 @@
         var earlyVal_handler = function (_data) {
             for (var i = 1; i <= _data.length; i++) {
                 var tmp_cir = eval("circle_" + i);
-                tmp_cir.earlyValAnimate(_data[i]);
+                tmp_cir.earlyValAnimate(_data[i-1]);
             }
             ajax(earlyVal_URL, earlyVal_handler, 2);
         }
