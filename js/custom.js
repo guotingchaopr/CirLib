@@ -3,9 +3,9 @@
 (function (window) {
     var reader = new Reader(2);
     var SELF_HOLD_FLAG = 1;
-    var transfers_url = "http://127.0.0.1/polling/transfers", //轮询转接量
-        initCir_url = "http://127.0.0.1/init/initCir",
-        earlyVal_URL = "http://127.0.0.1/polling/earlyVal"; //轮询预警值
+    var transfers_url = "http://122.10.9.227/polling/transfers", //轮询转接量
+        initCir_url = "http://122.10.9.227/init/initCir",
+        earlyVal_URL = "http://122.10.9.227/polling/earlyVal"; //轮询预警值
 
     window._extend = function (jsonbject1, jsonbject2) {
         var resultJsonObject = {};
