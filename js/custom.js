@@ -1,14 +1,12 @@
 //配置文件读取
 ;;
 (function (window) {
-    var reader = new Reader(2);
-    var SELF_HOLD_FLAG = 1,
-        error_times = {};
+    var reader = new Reader(2); << << << < HEAD
+    var error_times = {};
     var initCir_url = "http://127.0.0.1/init/initCir", //初始化
         transfers_url = "http://127.0.0.1/polling/transfers", //轮询转接量
         earlyVal_URL = "http://127.0.0.1/polling/earlyVal", //轮询预警值
         hangVal_URL = "http://127.0.0.1/polling/hangVal"; //悬挂数值
-
     window._extend = function (jsonbject1, jsonbject2) {
         var resultJsonObject = {};
         for (var attr in jsonbject1) {
@@ -29,7 +27,6 @@
             error_times[url] = error_times[url] == undefined ? 0 : error_times[url];
             if (xhr.readyState == 4) {
                 if (xhr.status == 200) {
-                    SELF_HOLD_FLAG = 1;
                     res = xhr.responseText;
                     error_times[url] = 0;
                 } else {
