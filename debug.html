@@ -1,139 +1,150 @@
+<!html type>
 <html>
-<head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <meta name="author" content="demo 0.5 gzc" >
-    <title>监控大盘-demo</title>
-    <link href="css/CirLib.css" rel="stylesheet" />
-    <script src="js/CirLib.js"></script>
-    <script type="text/javascript" src="js/jscolor.js"></script>
-    <style>
-        *,html,body {
-            font-size: 12px;
-            font-family: sans-serif;
-            padding: 0;
-            margin: 0;
-        }
 
-        .config {
-            position: fixed;
-            bottom: 2%;
-            color: white;
-            width: 98%;
-            padding: 0 0 2% 10px;
-            border: 1px solid #ababab;
-        }
-        .config input {
-            border: 1px solid #979FCA;
-            border-radius: 10px;
-            padding-left: 6px;
-            margin: 10px 10px 0 0;
-        }
-        .config input[type="button"] {
-            float: right;
-            border-radius: 10px;
-            color: red;
-            padding: 10px;
-            font-weight: 700;
-            margin-right: 20px;
-            cursor: pointer;
-            box-shadow: -2px 2px 0px 2px #979FCA;
-        }
-        #transition {
-            width: 60px;
-        }
-        #id{
-            width: 10%; margin: 10px 0 10px 0;
-        }
-    </style>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta name="author" content="demo 0.5 gzc">
+	<title>监控大盘-demo</title>
+	<link href="css/CirLib.css" rel="stylesheet" />
+	<script src="js/CirLib.js"></script>
+	<script type="text/javascript" src="js/jscolor.js"></script>
+	<style>
+		*,
+		html,
+		body {
+			font-size: 12px;
+			font-family: sans-serif;
+			padding: 0;
+			margin: 0;
+		}
+		.config {
+			position: fixed;
+			bottom: 2%;
+			color: white;
+			width: 98%;
+			padding: 0 0 2% 10px;
+			border: 1px solid #ababab;
+		}
+		.config input {
+			border: 1px solid #979FCA;
+			border-radius: 10px;
+			padding-left: 6px;
+			margin: 10px 10px 0 0;
+		}
+		.config input[type="button"] {
+			float: right;
+			border-radius: 10px;
+			color: red;
+			padding: 10px;
+			font-weight: 700;
+			margin-right: 20px;
+			cursor: pointer;
+			box-shadow: -2px 2px 0px 2px #979FCA;
+		}
+		#transition {
+			width: 60px;
+		}
+		#id {
+			width: 10%;
+			margin: 10px 0 10px 0;
+		}
+	</style>
 </head>
 
 <body>
 
-    <div class="config">
-        改变实时预警值<select id="cache_name" name="cache_name" /> <input value="10" type="text" id="realTime" />
-        <input type="button" value="变更预警值" id="realBtn" />
-		 <input type="button" value="随机运动" id="movementBtn" />
-        <h3>生成流量瓶</h3>
-        名称:<input value="" type="text" id="id" placeholder="用做元素ID必须以字母开头" /><br/>
-        X坐标
-        <input value="50" type="text" id="x" />Y坐标
-        <input value="50" type="text" id="y" />半径
-        <input value="50" id="radius" type="text"  />动画时间
-        <input value="3" id="transition" type="text" />s/秒
-        <br/>边框颜色
-        <input value="5A9662" id="borderColor" type="text" class="color" />阴影色
-        <input value="5A9662" id="shadowColor" type="text" class="color" />前景色
-        <input value="66AB70" id="frontColor" type="text" class="color" />背景色
-        <input value="#5A9662" id="backColor" type="text" class="color" />
-        <br />
-        <input type="button" value="生成" id="bottle_create" />
-        <br />
-        <h3>状态监听</h3>
-        预警状态值配置 正常
-        一级预警
-        <input value="60" id="ew_1" type="text" />二级预警
-        <input value="80" id="ew_2" type="text" />
-    </div>
+	<div class="config">
+		改变实时预警值
+		<select id="cache_name" name="cache_name" />
+		<input value="10" type="text" id="realTime" />
+		<input type="button" value="变更预警值" id="realBtn" />
+		<input type="button" value="随机运动" id="movementBtn" />
+		<h3>生成流量瓶</h3>
+		名称:
+		<input value="" type="text" id="id" placeholder="用做元素ID必须以字母开头" />
+		<br/>X坐标
+		<input value="50" type="text" id="x" />Y坐标
+		<input value="50" type="text" id="y" />半径
+		<input value="50" id="radius" type="text" />动画时间
+		<input value="3" id="transition" type="text" />s/秒
+		<br/>边框颜色
+		<input value="5A9662" id="borderColor" type="text" class="color" />阴影色
+		<input value="5A9662" id="shadowColor" type="text" class="color" />前景色
+		<input value="66AB70" id="frontColor" type="text" class="color" />背景色
+		<input value="#5A9662" id="backColor" type="text" class="color" />
+		<br />
+		<input type="button" value="生成" id="bottle_create" />
+		<br />
+		<h3>状态监听</h3>
+		预警状态值配置 正常 一级预警
+		<input value="60" id="ew_1" type="text" />二级预警
+		<input value="80" id="ew_2" type="text" />
+	</div>
 
-<script>
-    var cache_name =  []; //保存动态生成name防止冲突
-    var init = function () {
-        document.getElementById("bottle_create").addEventListener("click", function () { //生成按钮
-            var configs = {};
-            var doms = document.getElementsByClassName("config")[0].children;
-            for (var dom in doms) {
-                var _currentDom = doms[dom];
-                if (_currentDom.type && _currentDom.type == "text") {
-                    configs[_currentDom.id] = _currentDom.value;
-                }
-            }
-            if(cache_name.filter(function(name){if(name==configs.id)return name;}).length){
-                console.error(configs.id+" 此名字重复");
-                alert(configs.id+" 此名字重复");
-                return false;
-            }
-            cache_name.push(configs.id);
-            cache_name4_select(configs.id);
-            eval("window."+configs.id+"='';");
-            window[configs.id] = new $c(configs);
-            console.log(configs);
-        });
-        document.getElementById("realBtn").addEventListener("click", function () { //改变实时值按钮
-                var real_value  = document.getElementById('realTime').value;
-                var fromId = document.getElementById("cache_name").value;
-                eval(fromId+".childUDAnimate("+ (real_value<=100?real_value:100) + ")");
-        });
-		  document.getElementById("movementBtn").addEventListener("click", function () { //随机运动按钮
-                var fromId  = document.getElementById("cache_name").value;
-                var elem = eval(fromId);
-			  		 high(elem);
-        });
-    }
-    var cache_name4_select = function(cn){ //监听元素添加到select
-        document.getElementById('cache_name').options.add(new Option(cn,cn));
-    }
+	<script>
+		var cache_name = []; //保存动态生成name防止冲突
+		var init = function () {
+			document.getElementById("bottle_create").addEventListener("click", function () { //生成按钮
+				var configs = {};
+				var doms = document.getElementsByClassName("config")[0].children;
+				for (var dom in doms) {
+					var _currentDom = doms[dom];
+					if (_currentDom.type && _currentDom.type == "text") {
+						configs[_currentDom.id] = _currentDom.value;
+					}
+				}
+				if (cache_name.filter(function (name) {
+					if (name == configs.id) return name;
+				}).length) {
+					console.error(configs.id + " 此名字重复");
+					alert(configs.id + " 此名字重复");
+					return false;
+				}
+				cache_name.push(configs.id);
+				cache_name4_select(configs.id);
+				eval("window." + configs.id + "='';");
+				window[configs.id] = new $c(configs);
+				console.log(configs);
+			});
+			document.getElementById("realBtn").addEventListener("click", function () { //改变实时值按钮
+				var real_value = document.getElementById('realTime').value;
+				var fromId = document.getElementById("cache_name").value;
+				eval(fromId + ".childUDAnimate(" + (real_value <= 100 ? real_value : 100) + ")");
+			});
+			document.getElementById("movementBtn").addEventListener("click", function () { //随机运动按钮
+				var fromId = document.getElementById("cache_name").value;
+				var elem = eval(fromId);
+				high(elem);
+			});
+		}
+		var cache_name4_select = function (cn) { //监听元素添加到select
+			document.getElementById('cache_name').options.add(new Option(cn, cn));
+		}
 
-    var high =function(elem){
-        var _top = elem.y,
+		var high = function (elem) {
+			var _top = elem.y,
 				_left = elem.x;
-        setInterval(function(){
-            if(_top >= document.body.offsetHeight){
-                _top = elem.y;
-					console.log(this.id  + "返航");
-            }
-			   if(_left >= document.body.offsetWidth){
-                _left = elem.x;
-					console.log(this.id  + "返航");
-            }
-            elem.UDAnimate({left:_left,top:_top});
-            _top=Math.ceil( Math.random()*document.body.offsetHeight);
-			   _left=Math.ceil( Math.random()*document.body.offsetHeight);
-        },elem.transition * 500);
-    }
-    window.onload = function () {
-        init();
-    }
-</script>
+			setInterval(function () {
+				if (_top >= document.body.offsetHeight) {
+					_top = elem.y;
+					console.log(this.id + "返航");
+				}
+				if (_left >= document.body.offsetWidth) {
+					_left = elem.x;
+					console.log(this.id + "返航");
+				}
+				elem.UDAnimate({
+					left: _left,
+					top: _top
+				});
+				_top = Math.ceil(Math.random() * document.body.offsetHeight);
+				_left = Math.ceil(Math.random() * document.body.offsetHeight);
+			}, elem.transition * 500);
+		}
+		window.onload = function () {
+			init();
+		}
+	</script>
 </body>
 
 </html>
