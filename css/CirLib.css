@@ -41,23 +41,25 @@ body {
     animation-timing-function: linear;
     -webkit-animation-timing-function: linear;
 }
-.transfer{
+.transfer,
+.hangLabel {
     position: absolute;
     color: #ff8406;
+    width: 310px;
 }
-.transfer i{
+.transfer i,
+.hangLabel i {
     font-style: normal;
     font-size: 36px;
     margin-right: 30px;
 }
-.hangLabel{
-   position: absolute;
-   color: #ff8406;
-}
-.hangLabel i{
+.transfer p,
+.transfer font,
+.hangLabel p,
+.hangLabel font {
+    color: white;
     font-style: normal;
     font-size: 36px;
-    margin-right: 30px;
 }
 /** for circle **/
 
@@ -281,3 +283,57 @@ body {
     }
 }
 /** animate set **/
+
+/*** loader ***/
+
+.loader,
+.loader:before,
+.loader:after {
+    background: #FFF;
+    -webkit-animation: load1 1s infinite ease-in-out;
+    animation: load1 1s infinite ease-in-out;
+    width: 1em;
+    height: 4em;
+}
+.loader:before,
+.loader:after {
+    position: absolute;
+    top: 0;
+    content: '';
+}
+.loader:before {
+    left: -1.5em;
+}
+.loader {
+    position: fixed;
+    left: 1908;
+    top: 1926px;
+    font-size: 11px;
+    -webkit-animation-delay: 0.16s;
+    animation-delay: 0.16s;
+}
+.loader:after {
+    left: 1.5em;
+    -webkit-animation-delay: 0.32s;
+    animation-delay: 0.32s;
+}
+@-webkit-keyframes load1 {
+    0%, 80%, 100% {
+        box-shadow: 0 0 #FFF;
+        height: 4em;
+    }
+    40% {
+        box-shadow: 0 -2em #ffffff;
+        height: 5em;
+    }
+}
+@keyframes load1 {
+    0%, 80%, 100% {
+        box-shadow: 0 0 #FFF;
+        height: 4em;
+    }
+    40% {
+        box-shadow: 0 -2em #ffffff;
+        height: 5em;
+    }
+}
