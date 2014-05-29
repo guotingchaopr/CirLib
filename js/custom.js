@@ -1,7 +1,8 @@
 //配置文件读取
 ;;
 (function (window) {
-    var reader = new Reader(2); << << << < HEAD
+    var reader = new Reader(2);
+
     var error_times = {};
     var initCir_url = "http://127.0.0.1/init/initCir", //初始化
         transfers_url = "http://127.0.0.1/polling/transfers", //轮询转接量
