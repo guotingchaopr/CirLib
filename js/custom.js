@@ -2,12 +2,11 @@
 ;;
 (function (window) {
     var reader = new Reader(2);
-
     var error_times = {};
-    var initCir_url = "http://127.0.0.1/init/initCir", //初始化
-        transfers_url = "http://127.0.0.1/polling/transfers", //轮询转接量
-        earlyVal_URL = "http://127.0.0.1/polling/earlyVal", //轮询预警值
-        hangVal_URL = "http://127.0.0.1/polling/hangVal"; //悬挂数值
+    var initCir_url = "http://122.10.9.227/init/initCir", //初始化
+        transfers_url = "http://122.10.9.227/polling/transfers", //轮询转接量
+        earlyVal_URL = "http://122.10.9.227/polling/earlyVal", //轮询预警值
+        hangVal_URL = "http://122.10.9.227/polling/hangVal"; //悬挂数值
     window._extend = function (jsonbject1, jsonbject2) {
         var resultJsonObject = {};
         for (var attr in jsonbject1) {
@@ -93,7 +92,7 @@
                         window.flame.style.visibility = "hidden";
                         i = 0;
                     }
-                }, 35);
+                }, 5000);
         };
 
         //转接位置生成
