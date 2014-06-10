@@ -92,7 +92,7 @@
                         window.flame.style.visibility = "hidden";
                         i = 0;
                     }
-                }, 5000);
+                }, 50);
         };
 
         //转接位置生成
