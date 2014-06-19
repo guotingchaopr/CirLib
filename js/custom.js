@@ -46,7 +46,7 @@
 	}
 
 	//init configs
-	reader.open("/js/config.js", function () {
+	reader.open("js/config.js", function () {
 		var configs = {};
 		reader.read(51200, function (err, data) {
 			var configs_str = String.fromCharCode.apply(null, new Uint8Array(data));
@@ -67,7 +67,7 @@
 				var img = new Image();
 				eval("window." + params.name + " = img;");
 				img.className = params.name;
-				img.src = "/img/" + (params.file == undefined ? params.name : params.file) + ".png";
+				img.src = "img/" + (params.file == undefined ? params.name : params.file) + ".png";
 				img.style.position = "absolute";
 				img.style.left = params.x + "px";
 				img.style.top = params.y + "px";
