@@ -1,0 +1,13 @@
+   [warning:js-newcap] 构建函数名应该大写字母开头 (D:\ali01281878_CP_20140519_abossmonitor\htdocs\htdocs\js\monitor\autoComplete.js:29)
+   [warning:js-loopfunc] 不应该在循环中定义函数 (D:\ali01281878_CP_20140519_abossmonitor\htdocs\htdocs\js\monitor\autoComplete.js:187)
+   [warning:js-newcap] 构建函数名应该大写字母开头 (D:\ali01281878_CP_20140519_abossmonitor\htdocs\htdocs\js\monitor\autoComplete.js:201)
+   [warning:js-newcap] 构建函数名应该大写字母开头 (D:\ali01281878_CP_20140519_abossmonitor\htdocs\htdocs\js\monitor\autoComplete.js:204)
+   [warning:js-undef] 不推荐使用未定义变量 (D:\ali01281878_CP_20140519_abossmonitor\htdocs\htdocs\js\monitor\autoComplete.js:1)
+   [warning:js-unused] 不应该定义未使用的变量 (D:\ali01281878_CP_20140519_abossmonitor\htdocs\htdocs\js\monitor\autoComplete.js:1)
+   [warning:js-unused] 不应该定义未使用的变量 (D:\ali01281878_CP_20140519_abossmonitor\htdocs\htdocs\js\monitor\autoComplete.js:19)
+   [error:js-object-comma] ,
+                 : 对象多了逗号 (D:\ali01281878_CP_20140519_abossmonitor\htdocs\htdocs\js\monitor\channelMonitor.js:968)
+   [error:js-object-comma] ,
+        					}: 对象多了逗号 (D:\ali01281878_CP_20140519_abossmonitor\htdocs\htdocs\js\monitor\dataChannelManage.js:142)
+   [warning:js-loopfunc] 不应该在循环中定义函数 (D:\ali01281878_CP_20140519_abossmonitor\htdocs\htdocs\js\monitor\newMonitorTempConf.js:107)
+Catbus has found 10 error/warning in 432ms
