@@ -46,7 +46,7 @@
 	}
 
 	//init configs
-	reader.open("../global/js/config.js", function () {
+	reader.open("../js/config.js", function () {
 		var configs = {};
 		reader.read(51200, function (err, data) {
 			var configs_str = String.fromCharCode.apply(null, new Uint8Array(data));
