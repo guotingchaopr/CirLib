@@ -16,11 +16,16 @@
 			font-family: sans-serif;
 			padding: 0;
 			margin: 0;
+                                       text-shadow:none;
+                                       color:black;
 		}
+                          body{
+                            background: #dedede;
+                          }
 		.config {
 			position: fixed;
 			bottom: 2%;
-			color: white;
+			color:black;
 			width: 98%;
 			padding: 0 0 2% 10px;
 			border: 1px solid #ababab;
@@ -109,7 +114,8 @@
 			document.getElementById("realBtn").addEventListener("click", function () { //改变实时值按钮
 				var real_value = document.getElementById('realTime').value;
 				var fromId = document.getElementById("cache_name").value;
-				eval(fromId + ".childUDAnimate(" + (real_value <= 100 ? real_value : 100) + ")");
+                                                    var tmp_elem = eval(fromId);
+				tmp_elem.earlyValAnimate({early_value : (real_value <= 100 ? real_value : 100) ,early_color : [document.getElementById("frontColor").value,document.getElementById("shadowColor").value,document.getElementById("backColor").value] });
 			});
 			document.getElementById("movementBtn").addEventListener("click", function () { //随机运动按钮
 				var fromId = document.getElementById("cache_name").value;

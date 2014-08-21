@@ -5,11 +5,11 @@
 *****/
 (function () {
     var Cir = function () {
-        var _this = arguments.length ? new Cir.kernel.init(arguments[0]) : (function () {
+        var self = arguments.length ? new Cir.kernel.init(arguments[0]) : (function () {
             console.warn("参数异常 : [arguments] = " + Array.prototype.slice.call(arguments));
             return undefined;
-        })()
-        return _this;
+        })();
+        return self;
     };
 
     Cir.kernel = Cir.prototype = {
@@ -19,40 +19,34 @@
         _self: undefined,
         id: new Date().getTime(),
         radius: 0,
-        transition: "0.3",
+        transition: "1s",
         title: [],
         height: 0,
         width: 0,
+        earlyWaringInterVal:null,
         bgColor: "#3a3b3c",
         state: "infinite",
-        iconFont_1: "&#xe608",
-        iconFont_2: "&#xe60a",
+        iconFont_1: "&#xe608",  //ICON_FONT形状
+        iconFont_2: "&#xe60a",  //ICON_FONT形状
         iconFont_className: " iconfont",
         animateWay: undefined,
         parentEl: undefined,
         borderColor: "#5A9662",
-        ew_1: 60,
-        ew_2: 80,
         ew_normal_fg: "#30763A",
         ew_normal_bg: "#3CA44F",
         ew_normal_shadow: "#30763A",
-        ew_1_fg: "#D09132",
-        ew_1_bg: "#ECA539",
-        ew_1_shadow: "#675235",
-        ew_2_fg: "#C04444",
-        ew_2_bg: "#D94D4C",
-        ew_2_shadow: "#5F3D3C",
-        ew_1_limit: 0,
-        ew_2_limit: 0,
         ew_rate: 0,
         isAnimate: "true",
         init: function (config) {
+        	
             for (var cf in config) {
                 this[cf] = config[cf] || this[cf];
             }
+            
             if (!this.parentEl) {
                 this.parentEl = document.body;
             }
+            
             this.dia = this.radius * 2;
             this.parentEl.appendChild(this.createCir());
             if (this._callback) this._callback.apply(this);
@@ -91,11 +85,12 @@
                 "height": this.height = this.dia + "px",
                 "webkitBorderRadius": this.dia + "px",
                 "background": this.bgColor,
-                //"border": "6px solid " + this.borderColor, 还是去掉Border 好一点 不然有锯齿
-                "borderRadius": this.dia + "px",
-                "boxShadow": "0 " + (~~(this.radius * 0.1)) + "px 0 " + this.ew_normal_shadow,
+                "border": "0.6px solid " + this.borderColor, //还是去掉Border 好一点 不然有锯齿
+                "borderRadius": this.dia+20 + "px",
+                "boxShadow":"none",
+                "webkitTransition" : "1s",
+                //"boxShadow": "inset 0 -" + (this.radius*0.1) + "px 0 " + this.ew_normal_shadow,
                 "overflow": "hidden",
-                "transition": this.transition + "s",
                 "cursor": "pointer"
             };
             return cssRule;
@@ -156,8 +151,6 @@
                 toValue: 0
             });
             this.ew_rate = this.dia / 100; //转化比率
-            this.ew_1_limit = this.ew_1 * this.ew_rate;
-            this.ew_2_limit = this.ew_2 * this.ew_rate;
             var childs = this.childs = this._self.children;
             for (var i = 0; i < childs.length; i++) {
                 childs[i].style.left = -this.dia;
@@ -173,28 +166,29 @@
             currentDom.style.top = direction.top;
             currentDom.style.left = direction.left;
         },
-        earlyValAnimate: function (top) {
-            var _top = top > 100 ? 100 : top;
+        earlyValAnimate: function (data) {  //预警值动画 和 预警颜色
+        	var _top = data.early_value > 100 ? 100 : data.early_value;
             var covered_top = _top * this.ew_rate;
             for (var i = 0; i < 2; i++) {
                 this.childs[i].style.top = -((covered_top + (this.radius * 0.11)));
             }
-
-            if (covered_top >= this.ew_2_limit) {
-                this._self.style.borderColor = this.ew_2_fg;
-                this._self.style.boxShadow = "0 " + (~~(this.radius * 0.1)) + "px 0 " + this.ew_2_shadow;
-                this.childs[0].style.color = this.ew_2_fg;
-                this.childs[1].style.color = this.ew_2_bg;
-            } else if (covered_top >= this.ew_1_limit) {
-                this._self.style.borderColor = this.ew_1_fg;
-                this._self.style.boxShadow = "0 " + (~~(this.radius * 0.1)) + "px 0 " + this.ew_1_shadow;
-                this.childs[0].style.color = this.ew_1_fg;
-                this.childs[1].style.color = this.ew_1_bg;
-            } else {
-                this._self.style.borderColor = this.ew_normal_fg;
-                this._self.style.boxShadow = "0 " + (~~(this.radius * 0.1)) + "px 0 " + this.ew_normal_shadow;
-                this.childs[0].style.color = this.ew_normal_fg;
-                this.childs[1].style.color = this.ew_normal_bg;
+            var _colors = data.early_color; // 获取颜色值
+            var _this = this;
+            //this._self.style.borderColor = _colors[0];
+            this.childs[1].style.color = _colors[1];
+            this.childs[0].style.color = _colors[2];
+            if(_colors[0] != this.ew_normal_fg){
+            	clearInterval(this.earlyWaringInterVal);
+            	this.earlyWaringInterVal = setInterval(function(){
+            		if(_this._self.style.boxShadow == "none"){
+            				_this._self.style.boxShadow = " 0 0 120px 55px " + _colors[0];
+            		}else{
+            				_this._self.style.boxShadow = "none";
+            		}
+            	},500);
+            }else{
+            	_this._self.style.boxShadow = "none";
+            	this.earlyWaringInterVal = clearInterval(this.earlyWaringInterVal);
             }
         }
     };
