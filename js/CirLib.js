@@ -177,11 +177,11 @@
             //this._self.style.borderColor = _colors[0];
             this.childs[1].style.color = "red";
             this.childs[0].style.color = "#EE5353";
-            if(_colors[0] != this.ew_normal_fg){
+            if("#EE5353" != this.ew_normal_fg){
             	clearInterval(this.earlyWaringInterVal);
             	this.earlyWaringInterVal = setInterval(function(){
             		if(_this._self.style.boxShadow == "none"){
-            				_this._self.style.boxShadow = " 0 0 120px 55px " + _colors[0];
+            				_this._self.style.boxShadow = " 0 0 120px 55px " + "#EE5353";
             		}else{
             				_this._self.style.boxShadow = "none";
             		}
