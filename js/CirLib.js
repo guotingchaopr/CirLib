@@ -176,7 +176,7 @@
             var _colors = data.early_color; // 获取颜色值
             var _this = this;
             //this._self.style.borderColor = _colors[0];
-            this.childs[1].style.color = "red";
+            this.childs[1].style.color = "#EB8C8C";
             this.childs[0].style.color = "#EE5353";
             if("#EE5353" != this.ew_normal_fg){
             	clearInterval(this.earlyWaringInterVal);
