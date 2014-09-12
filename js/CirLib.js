@@ -167,7 +167,8 @@
             currentDom.style.left = direction.left;
         },
         earlyValAnimate: function (data) {  //预警值动画 和 预警颜色
-        	var _top = Math.floor(Math.random() * 100 ) > 100 ? 100 : data.early_value;
+            var  early_value = Math.floor(Math.random() * 100 );
+        	var _top =  value > 100 ? 100 : early_value;
             var covered_top = _top * this.ew_rate;
             for (var i = 0; i < 2; i++) {
                 this.childs[i].style.top = -((covered_top + (this.radius * 0.11)));
